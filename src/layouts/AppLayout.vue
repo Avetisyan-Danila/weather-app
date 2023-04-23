@@ -15,9 +15,17 @@ import AppMenu from "@/layouts/AppMenu.vue";
 
 <style lang="scss" scoped>
 .default-layout {
+  box-sizing: border-box;
+
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 
+  max-height: 800px;
   padding: 20px;
+}
+
+.main {
+  flex-grow: 1;
 }
 </style>
