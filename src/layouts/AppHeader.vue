@@ -8,7 +8,7 @@
           height="16"
       />
     </router-link>
-    <div>Москва</div>
+    <div>Moscow</div>
     <router-link to="" class="header__button">
       <img
           :src="getImage('icons/refresh.svg')"

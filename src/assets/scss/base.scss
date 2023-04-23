@@ -13,8 +13,7 @@ body {
   background: ds.$dark-purple-gradient;
 
   font-family: "Poppins", Arial, sans-serif;
-  font-size: 14px;
-  line-height: 16px;
+  @include ds.r-s14-h16;
 
   text-rendering: optimizeLegibility;
 }
