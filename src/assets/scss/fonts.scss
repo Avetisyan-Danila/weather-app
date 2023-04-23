@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-style: normal;
+
+  src: local("Poppins"),
+    local("Poppins Regular"),
+    url("@/assets/fonts/poppins-regular.woff2") format("woff2"),
+    url("@/assets/fonts/poppins-regular.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+
+  src: local("Poppins"),
+  local("Poppins Medium"),
+  url("@/assets/fonts/poppins-medium.woff2") format("woff2"),
+  url("@/assets/fonts/poppins-medium.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-style: normal;
+
+  src: local("Poppins"),
+    local("Poppins SemiBold"),
+    url("@/assets/fonts/poppins-semi-bold.woff2") format("woff2"),
+    url("@/assets/fonts/poppins-semi-bold.woff") format("woff");
+  font-display: swap;
+}

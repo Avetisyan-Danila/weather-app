@@ -1,0 +1,16 @@
+@import "ds-system/ds.scss";
+@import "mixins/mixins.scss";
+
+.title {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+
+  &--big {
+    @include sb-s18-h18;
+  }
+
+  &--small {
+    @include r-s14-h14;
+  }
+}
