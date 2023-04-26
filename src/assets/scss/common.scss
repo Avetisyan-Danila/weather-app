@@ -10,7 +10,11 @@
     @include sb-s18-h18;
   }
 
-  &--small {
+  &--md {
     @include r-s14-h16;
+  }
+
+  &--small {
+    @include sb-s12-h18;
   }
 }

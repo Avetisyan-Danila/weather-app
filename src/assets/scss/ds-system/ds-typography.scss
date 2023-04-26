@@ -53,6 +53,10 @@
   @include typography_template(14px, 21px, 600);
 }
 
+@mixin sb-s16-h16 {
+  @include typography_template(16px, 16px, 600);
+}
+
 @mixin sb-s18-h18 {
   @include typography_template(18px, 18px, 600);
 }

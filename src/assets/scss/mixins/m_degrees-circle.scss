@@ -1,0 +1,17 @@
+@mixin degrees_circle($size, $border-width, $top, $rigth) {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: $top;
+    right: $rigth;
+
+    box-sizing: border-box;
+    width: $size;
+    height: $size;
+
+    border: $border-width solid #FFFFFF;
+    border-radius: 50%;
+  }
+}
