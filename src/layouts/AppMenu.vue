@@ -31,8 +31,8 @@
         <img
             :src="getImage('icons/feedback.svg')"
             alt="Feedback"
-            width="20"
-            height="20"
+            width="24"
+            height="24"
         >
       </li>
       <li class="menu__item">

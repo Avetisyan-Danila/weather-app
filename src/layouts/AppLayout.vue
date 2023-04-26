@@ -1,6 +1,13 @@
 <template>
   <div class="default-layout">
     <div class="default-layout__side-bg default-layout__side-bg--header"></div>
+    <div class="default-layout__side-bg default-layout__side-bg--footer"></div>
+    <div class="default-layout__bg">
+      <img
+          :src="getImage('clouds/variant-1.png')"
+      >
+    </div>
+
     <div class="wrapper">
       <app-header />
       <div class="main">
@@ -10,13 +17,13 @@
       </div>
       <app-menu />
     </div>
-    <div class="default-layout__side-bg default-layout__side-bg--footer"></div>
   </div>
 </template>
 
 <script setup>
 import AppHeader from "@/layouts/AppHeader.vue";
 import AppMenu from "@/layouts/AppMenu.vue";
+import { getImage } from "@/common/helpers/getImage.js";
 </script>
 
 <style lang="scss" scoped>
@@ -42,24 +49,26 @@ import AppMenu from "@/layouts/AppMenu.vue";
     border-radius: 0;
   }
 
-  &:after {
-    content: '';
+  &__bg {
     position: absolute;
+    z-index: -1;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
-    background: url(@/assets/img/clouds/variant-1.png) no-repeat;
-    background-size: 100%;
+
     mix-blend-mode: soft-light;
     opacity: 0.5;
-    backdrop-filter: blur(40px);
-    z-index: -1;
+
+    @media (max-width: 415px) {
+      position: fixed;
+    }
   }
 
   &__side-bg {
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     width: 100%;
     height: 75px;
