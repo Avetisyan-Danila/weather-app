@@ -1,36 +1,46 @@
 <template>
   <div class="menu">
     <ul class="menu__list">
-      <li class="menu__item menu__item--active">
-        <img
-            :src="getImage('icons/home.svg')"
-            alt="Home"
-            width="24"
-            height="24"
+      <router-link to="/">
+        <li
+            class="menu__item"
+            :class="{'menu__item--active': route.name === 'home'}"
         >
-      </li>
-      <li class="menu__item">
-        <img
-            :src="getImage('icons/search.svg')"
-            alt="Search"
-            width="24"
-            height="24"
+          <img
+              :src="getImage('icons/home.svg')"
+              alt="Home"
+              width="24"
+              height="24"
+          >
+        </li>
+      </router-link>
+      <router-link :to="{ name: 'search' }">
+        <li
+            class="menu__item"
+            :class="{'menu__item--active': route.name === 'search'}"
         >
-      </li>
+          <img
+              :src="getImage('icons/search.svg')"
+              alt="Search"
+              width="20"
+              height="20"
+          >
+        </li>
+      </router-link>
       <li class="menu__item">
         <img
             :src="getImage('icons/feedback.svg')"
             alt="Feedback"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
         >
       </li>
       <li class="menu__item">
         <img
             :src="getImage('icons/bell.svg')"
             alt="Bell"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
         >
       </li>
     </ul>
@@ -39,7 +49,9 @@
 
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 </script>
 
 <style lang="scss" scoped>
@@ -87,19 +99,18 @@ import { getImage } from "@/common/helpers/getImage.js";
   display: flex;
   justify-content: center;
   align-items: center;
-
   box-sizing: border-box;
+
   padding: 14px;
   width: 50px;
   height: 50px;
+
   cursor: pointer;
+  transition: 0.3s;
+  border-radius: 22px 22px 0 0;
 
   &--active {
-    @include purple-gradient;
-
-    &:after {
-      border-radius: 22px 22px 0 0;
-    }
+    background-color: #5d4894;
   }
 }
 </style>

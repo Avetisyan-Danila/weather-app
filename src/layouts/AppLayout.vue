@@ -4,7 +4,9 @@
     <div class="wrapper">
       <app-header />
       <div class="main">
-        <slot />
+        <transition name="fade" appear>
+          <slot />
+        </transition>
       </div>
       <app-menu />
     </div>
@@ -48,7 +50,7 @@ import AppMenu from "@/layouts/AppMenu.vue";
     width: 100%;
     height: 100%;
     background: url(@/assets/img/clouds/variant-1.png) no-repeat;
-    background-size: cover;
+    background-size: 100%;
     mix-blend-mode: soft-light;
     opacity: 0.5;
     backdrop-filter: blur(40px);
@@ -79,6 +81,10 @@ import AppMenu from "@/layouts/AppMenu.vue";
 }
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
   overflow: hidden;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -90,5 +96,10 @@ import AppMenu from "@/layouts/AppMenu.vue";
   @media (max-width: 415px) {
     margin: 60px 0 40px 0;
   }
+}
+
+.main {
+  flex-grow: 1;
+  padding-top: 45px;
 }
 </style>
