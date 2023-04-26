@@ -91,8 +91,4 @@ import AppMenu from "@/layouts/AppMenu.vue";
     margin: 60px 0 40px 0;
   }
 }
-
-.main {
-  flex-grow: 1;
-}
 </style>
