@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-page">
     <h1 class="visually-hidden">Weather forecast App</h1>
 
     <div class="detailed-forecast">
@@ -49,7 +49,7 @@
               height="24"
           >
           <span class="stats__value">9km/h</span>
-          <span class="stats__name">Precipitation</span>
+          <span class="stats__name">Wind speed</span>
         </li>
       </ul>
     </div>
@@ -363,8 +363,6 @@ import 'swiper/css';
 }
 
 .other-cities {
-  margin-bottom: 60px;
-
   &__header {
     display: flex;
     justify-content: space-between;

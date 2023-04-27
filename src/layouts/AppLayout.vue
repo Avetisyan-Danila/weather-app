@@ -109,6 +109,6 @@ import { getImage } from "@/common/helpers/getImage.js";
 
 .main {
   flex-grow: 1;
-  padding-top: 45px;
+  padding: 45px 0 70px 0;
 }
 </style>

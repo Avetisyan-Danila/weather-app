@@ -8,7 +8,7 @@
           height="16"
       />
     </router-link>
-    <div class="header__title title title--md">Moscow</div>
+    <h2 class="header__title title title--md">Moscow</h2>
     <router-link to="" class="header__button">
       <img
           :src="getImage('icons/refresh.svg')"
