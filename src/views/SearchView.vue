@@ -1,5 +1,8 @@
 <template>
-  <div class="search-page">
+  <div class="search">
+    <transition name="slide" mode="out-in">
+      <router-view></router-view>
+    </transition>
     <div class="search__top">
       <label class="search__input">
         <input type="text" placeholder="Name of the city">
@@ -17,56 +20,64 @@
     <div class="popular">
       <ul class="popular__list">
         <li class="popular__item">
-          <div class="popular__info">
-            <div class="popular__title">Surat</div>
-            <div class="popular__weather">Sunny</div>
-          </div>
-          <img
-              class="popular__img"
-              :src="getImage('weather/cloudy.png')"
-              alt="Cloudy"
-              width="135"
-              height="106"
-          />
+          <router-link class="popular__link" :to="{ name: 'detailed-search', params: { city: 'test' } }">
+            <div class="popular__info">
+              <div class="popular__title">Surat</div>
+              <div class="popular__weather">Sunny</div>
+            </div>
+            <img
+                class="popular__img"
+                :src="getImage('weather/cloudy.png')"
+                alt="Cloudy"
+                width="135"
+                height="106"
+            />
+          </router-link>
         </li>
         <li class="popular__item">
-          <div class="popular__info">
-            <div class="popular__title">Mumbai</div>
-            <div class="popular__weather">Rainy</div>
-          </div>
-          <img
-              class="popular__img"
-              :src="getImage('weather/rain.png')"
-              alt="Rain"
-              width="135"
-              height="106"
-          />
+          <router-link class="popular__link" :to="{ name: 'detailed-search', params: { city: 'test' } }">
+            <div class="popular__info">
+              <div class="popular__title">Mumbai</div>
+              <div class="popular__weather">Rainy</div>
+            </div>
+            <img
+                class="popular__img"
+                :src="getImage('weather/rain.png')"
+                alt="Rain"
+                width="135"
+                height="106"
+            />
+          </router-link>
         </li>
         <li class="popular__item">
-          <div class="popular__info">
-            <div class="popular__title">Chennai</div>
-            <div class="popular__weather">Rainy</div>
-          </div>
-          <img
-              class="popular__img"
-              :src="getImage('weather/rain-night.png')"
-              alt="Rain night"
-              width="135"
-              height="106"
-          />
+          <router-link class="popular__link" :to="{ name: 'detailed-search', params: { city: 'test' } }">
+            <div class="popular__info">
+              <div class="popular__title">Chennai</div>
+              <div class="popular__weather">Rainy</div>
+            </div>
+            <img
+                class="popular__img"
+                :src="getImage('weather/rain-night.png')"
+                alt="Rain night"
+                width="135"
+                height="106"
+            />
+          </router-link>
         </li>
         <li class="popular__item">
-          <div class="popular__info">
-            <div class="popular__title">Manali</div>
-            <div class="popular__weather">Sunny</div>
-          </div>
-          <img
-              class="popular__img"
-              :src="getImage('weather/sunny.png')"
-              alt="Sunny"
-              width="135"
-              height="106"
-          />
+          <router-link class="popular__link" :to="{ name: 'detailed-search', params: { city: 'test' } }">
+            <div class="popular__info">
+              <div class="popular__title">Manali</div>
+              <div class="popular__weather">Sunny</div>
+            </div>
+            <img
+                class="popular__img"
+                :src="getImage('weather/sunny.png')"
+                alt="Sunny"
+                width="135"
+                height="106"
+            />
+          </router-link>
         </li>
       </ul>
     </div>
@@ -154,9 +165,8 @@ import { getImage } from "@/common/helpers/getImage.js";
     gap: 50px;
   }
 
-  &__item {
+  &__link {
     @include purple-gradient;
-
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -173,11 +183,14 @@ import { getImage } from "@/common/helpers/getImage.js";
   &__title {
     @include sb-s20-h20;
 
+    color: $white;
     margin-bottom: 10px;
   }
 
   &__weather {
     @include m-s14-h14;
+
+    color: $white;
   }
 
   &__img {

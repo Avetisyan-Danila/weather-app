@@ -1,5 +1,8 @@
 <template>
-  <div class="home-page">
+  <div class="home">
+    <transition name="slide" mode="out-in">
+      <router-view></router-view>
+    </transition>
     <h1 class="visually-hidden">Weather forecast App</h1>
 
     <div class="detailed-forecast">
@@ -191,64 +194,72 @@
           :space-between="10"
       >
         <swiper-slide class="other-cities__item">
-          <div class="other-cities__img">
-            <img
-                :src="getImage('weather/cloudy.png')"
-                alt="Cloudy"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="other-cities__info">
-            <div class="other-cities__name">Delhi</div>
-            <div class="other-cities__weather">Cloudy</div>
-          </div>
-          <div class="other-cities__degrees">9</div>
+          <router-link class="other-cities__link" :to="{ name: 'detailed-home', params: { city: 'test' } }">
+            <div class="other-cities__img">
+              <img
+                  :src="getImage('weather/cloudy.png')"
+                  alt="Cloudy"
+                  width="40"
+                  height="40"
+              >
+            </div>
+            <div class="other-cities__info">
+              <div class="other-cities__name">Delhi</div>
+              <div class="other-cities__weather">Cloudy</div>
+            </div>
+            <div class="other-cities__degrees">9</div>
+          </router-link>
         </swiper-slide>
         <swiper-slide class="other-cities__item">
-          <div class="other-cities__img">
-            <img
-                :src="getImage('weather/sunny.png')"
-                alt="Sunny"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="other-cities__info">
-            <div class="other-cities__name">Kolkata</div>
-            <div class="other-cities__weather">Sunny</div>
-          </div>
-          <div class="other-cities__degrees">20</div>
+          <router-link class="other-cities__link" :to="{ name: 'detailed-home', params: { city: 'test' } }">
+            <div class="other-cities__img">
+              <img
+                  :src="getImage('weather/sunny.png')"
+                  alt="Sunny"
+                  width="40"
+                  height="40"
+              >
+            </div>
+            <div class="other-cities__info">
+              <div class="other-cities__name">Kolkata</div>
+              <div class="other-cities__weather">Sunny</div>
+            </div>
+            <div class="other-cities__degrees">20</div>
+          </router-link>
         </swiper-slide>
         <swiper-slide class="other-cities__item">
-          <div class="other-cities__img">
-            <img
-                :src="getImage('weather/thunder.png')"
-                alt="Thunder"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="other-cities__info">
-            <div class="other-cities__name">Chennai</div>
-            <div class="other-cities__weather">Thunder</div>
-          </div>
-          <div class="other-cities__degrees">12</div>
+          <router-link class="other-cities__link" :to="{ name: 'detailed-home', params: { city: 'test' } }">
+            <div class="other-cities__img">
+              <img
+                  :src="getImage('weather/thunder.png')"
+                  alt="Thunder"
+                  width="40"
+                  height="40"
+              >
+            </div>
+            <div class="other-cities__info">
+              <div class="other-cities__name">Chennai</div>
+              <div class="other-cities__weather">Thunder</div>
+            </div>
+            <div class="other-cities__degrees">12</div>
+          </router-link>
         </swiper-slide>
         <swiper-slide class="other-cities__item">
-          <div class="other-cities__img">
-            <img
-                :src="getImage('weather/sunny.png')"
-                alt="Sunny"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="other-cities__info">
-            <div class="other-cities__name">Manali</div>
-            <div class="other-cities__weather">Sunny</div>
-          </div>
-          <div class="other-cities__degrees">33</div>
+          <router-link class="other-cities__link" :to="{ name: 'detailed-home', params: { city: 'test' } }">
+            <div class="other-cities__img">
+              <img
+                  :src="getImage('weather/sunny.png')"
+                  alt="Sunny"
+                  width="40"
+                  height="40"
+              >
+            </div>
+            <div class="other-cities__info">
+              <div class="other-cities__name">Manali</div>
+              <div class="other-cities__weather">Sunny</div>
+            </div>
+            <div class="other-cities__degrees">33</div>
+          </router-link>
         </swiper-slide>
       </swiper>
     </div>
@@ -370,6 +381,10 @@ import 'swiper/css';
   }
 
   &__item {
+    width: 39%;
+  }
+
+  &__link {
     @include purple-gradient;
 
     display: flex;
@@ -377,7 +392,6 @@ import 'swiper/css';
     justify-content: center;
     gap: 10px;
 
-    width: 39%;
     padding: 5px 10px;
     min-height: 50px;
   }
@@ -385,11 +399,14 @@ import 'swiper/css';
   &__name {
     @include sb-s14-h14;
 
+    color: $white;
     margin-bottom: 5px;
   }
 
   &__weather {
     @include sb-s10-h14;
+
+    color: $white;
   }
 
   &__degrees {
@@ -399,6 +416,8 @@ import 'swiper/css';
     flex: 1 0 auto;
     text-align: right;
     padding-right: 10px;
+
+    color: $white;
   }
 }
 </style>
