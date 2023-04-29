@@ -68,11 +68,11 @@ import { ref, watch } from "vue";
 const router = useRouter();
 const route = useRoute();
 
-const hasHistory = ref(window.history.state.back);
+const hasHistory = ref(!!window.history.state.back);
 const title = ref('');
 
 router.afterEach(async () => {
-  hasHistory.value = window.history.state.back;
+  hasHistory.value = !!window.history.state.back;
 })
 
 // Наблюдение за изменением маршрута
