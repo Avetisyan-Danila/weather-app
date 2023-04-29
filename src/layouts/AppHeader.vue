@@ -1,27 +1,60 @@
 <template>
   <header class="header">
-    <router-link to="" class="header__button">
+    <div
+        v-if="!historyBack"
+        class="header__button"
+    >
       <img
           :src="getImage('icons/menu.svg')"
-          alt="Меню"
+          alt="Menu"
           width="16"
           height="16"
       />
-    </router-link>
-    <h2 class="header__title title title--md">Moscow</h2>
-    <router-link to="" class="header__button">
+    </div>
+    <div
+        v-else
+        class="header__button"
+        @click="router.go(-1)"
+    >
       <img
-          :src="getImage('icons/refresh.svg')"
-          alt="Меню"
+          :src="getImage('icons/back.svg')"
+          alt="Menu"
           width="16"
           height="16"
       />
-    </router-link>
+    </div>
+
+    <h2 class="header__title title title--md">Moscow</h2>
+
+    <transition name="fade" appear>
+      <div
+          v-if="route.name === 'home'"
+          class="header__button header__button--refresh"
+      >
+        <img
+            :src="getImage('icons/refresh.svg')"
+            alt="Меню"
+            width="16"
+            height="16"
+        />
+      </div>
+    </transition>
   </header>
 </template>
 
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
+import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
+
+const router = useRouter();
+const route = useRoute();
+
+const historyBack = ref(window.history.state.back);
+
+router.afterEach(async () => {
+  historyBack.value = window.history.state.back;
+})
 
 </script>
 
@@ -33,7 +66,6 @@ import { getImage } from "@/common/helpers/getImage.js";
   position: sticky;
   z-index: 10;
   top: 0;
-  left: 50%;
   width: 375px;
 
   display: flex;
@@ -65,7 +97,7 @@ import { getImage } from "@/common/helpers/getImage.js";
 }
 
 .header__button {
-  flex: 1 0 35px;
+  flex: 0 0 35px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,9 +105,17 @@ import { getImage } from "@/common/helpers/getImage.js";
   height: 35px;
   background-color: rgba($white, 0.3);
   border-radius: 5px;
+  cursor: pointer;
+
+  &--refresh {
+    transform: translateX(-2px);
+  }
 }
 
 .header__title {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
   text-align: center;
 }
 </style>
