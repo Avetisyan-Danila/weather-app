@@ -49,6 +49,8 @@ const input = computed({
 @import "@/assets/scss/mixins/mixins";
 
 .app-input {
+  display: block;
+
   input {
     box-sizing: border-box;
     width: 100%;
