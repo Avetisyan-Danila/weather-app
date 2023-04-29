@@ -42,7 +42,9 @@ import { getImage } from "@/common/helpers/getImage.js";
   overflow: hidden;
 
   padding: 0 20px;
+  border: 1px solid black;
   border-radius: 35px;
+  box-shadow: $shadow-medium;
 
   @media (max-width: 415px) {
     max-height: 100%;
