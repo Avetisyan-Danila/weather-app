@@ -20,41 +20,8 @@
         <span>26 August 2022</span>
         <span> | 10:00</span>
       </div>
-      <ul class="stats">
-        <li class="stats__point">
-          <img
-              class="stats__img"
-              :src="getImage('stats/precipitation.png')"
-              alt="Precipitation"
-              width="24"
-              height="24"
-          >
-          <span class="stats__value">30%</span>
-          <span class="stats__name">Precipitation</span>
-        </li>
-        <li class="stats__point">
-          <img
-              class="stats__img"
-              :src="getImage('stats/humidity.png')"
-              alt="Humidity"
-              width="24"
-              height="24"
-          >
-          <span class="stats__value">20%</span>
-          <span class="stats__name">Humidity</span>
-        </li>
-        <li class="stats__point">
-          <img
-              class="stats__img"
-              :src="getImage('stats/wind-speed.png')"
-              alt="Wind speed"
-              width="24"
-              height="24"
-          >
-          <span class="stats__value">9km/h</span>
-          <span class="stats__name">Wind speed</span>
-        </li>
-      </ul>
+
+      <stats-info class="detailed-forecast__stats" />
     </div>
     <div class="weekly-forecast">
       <div class="weekly-forecast__header">
@@ -267,6 +234,7 @@
 </template>
 
 <script setup>
+import StatsInfo from "@/modules/stats/StatsInfo.vue";
 import { getImage } from "@/common/helpers/getImage.js";
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
@@ -280,6 +248,8 @@ import 'swiper/css';
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-bottom: 40px;
 
   &__title {
     @include sb-s12-h18;
@@ -302,38 +272,9 @@ import 'swiper/css';
   &__date {
     margin-bottom: 20px;
   }
-}
 
-.stats {
-  @include clear-list;
-  @include purple-gradient;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 294px;
-  box-sizing: border-box;
-  padding: 15px 20px;
-  margin-bottom: 40px;
-
-  &__point {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  &__img {
-    margin-bottom: 5px;
-  }
-
-  &__value {
-    @include sb-s14-h21;
-    margin-bottom: 3px;
-  }
-
-  &__name {
-    @include m-s12-h18;
+  &__stats {
+    max-width: 295px;
   }
 }
 
