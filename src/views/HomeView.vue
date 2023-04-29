@@ -260,6 +260,7 @@ import 'swiper/css';
 
   &__img {
     margin-bottom: 28px;
+    transform: translateX(2px);
   }
 
   &__degrees {
