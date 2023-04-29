@@ -1,10 +1,13 @@
 <template>
   <div class="menu">
     <ul class="menu__list">
-      <router-link to="/">
-        <li
-            class="menu__item"
-            :class="{'menu__item--active': route.name === 'home'}"
+      <li
+          class="menu__item"
+      >
+        <router-link
+            class="menu__link"
+            :class="{'menu__link--active': route.name === 'home'}"
+            to="/"
         >
           <img
               :src="getImage('icons/home.svg')"
@@ -12,12 +15,15 @@
               width="24"
               height="24"
           >
-        </li>
-      </router-link>
-      <router-link :to="{ name: 'search' }">
-        <li
-            class="menu__item"
-            :class="{'menu__item--active': route.name === 'search'}"
+        </router-link>
+      </li>
+      <li
+          class="menu__item"
+      >
+        <router-link
+            class="menu__link"
+            :class="{'menu__link--active': route.name === 'search'}"
+            :to="{ name: 'search' }"
         >
           <img
               :src="getImage('icons/search.svg')"
@@ -25,23 +31,27 @@
               width="20"
               height="20"
           >
-        </li>
-      </router-link>
-      <li class="menu__item">
-        <img
-            :src="getImage('icons/feedback.svg')"
-            alt="Feedback"
-            width="24"
-            height="24"
-        >
+        </router-link>
       </li>
       <li class="menu__item">
-        <img
-            :src="getImage('icons/bell.svg')"
-            alt="Bell"
-            width="20"
-            height="20"
-        >
+        <router-link class="menu__link" to="/">
+          <img
+              :src="getImage('icons/feedback.svg')"
+              alt="Feedback"
+              width="24"
+              height="24"
+          >
+        </router-link>
+      </li>
+      <li class="menu__item">
+        <router-link class="menu__link" to="/">
+          <img
+              :src="getImage('icons/heart.svg')"
+              alt="Bell"
+              width="24"
+              height="24"
+          >
+        </router-link>
       </li>
     </ul>
   </div>
@@ -95,7 +105,7 @@ const route = useRoute();
   padding: 0 30px;
 }
 
-.menu__item {
+.menu__link {
   display: flex;
   justify-content: center;
   align-items: center;
