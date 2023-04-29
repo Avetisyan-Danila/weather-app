@@ -3,10 +3,12 @@
     <transition name="slide" mode="out-in">
       <router-view></router-view>
     </transition>
+
     <div class="search__top">
       <app-input
           class="search__input"
           type="text"
+          name="search"
           placeholder="Name of the city"
       />
 
