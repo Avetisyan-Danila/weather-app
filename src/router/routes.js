@@ -7,6 +7,9 @@ export const routes = [
             {
                 path: "/detailed/:city",
                 name: "detailed-home",
+                meta: {
+                    title: '7 Days',
+                },
                 component: () => import("../views/DetailedView.vue"),
             },
         ]
@@ -15,10 +18,16 @@ export const routes = [
         path: "/search",
         name: "search",
         component: () => import("@/views/SearchView.vue"),
+        meta: {
+            title: 'Search for City',
+        },
         children: [
             {
                 path: "/detailed/:city",
                 name: "detailed-search",
+                meta: {
+                    title: '7 Days',
+                },
                 component: () => import("../views/DetailedView.vue"),
             },
         ]
@@ -27,15 +36,24 @@ export const routes = [
         path: "/feedback",
         name: "feedback",
         component: () => import("@/views/FeedbackView.vue"),
+        meta: {
+            title: 'Feedback',
+        },
     },
     {
         path: "/favorites",
         name: "favorites",
         component: () => import("@/views/FavoritesView.vue"),
+        meta: {
+            title: 'Favorites',
+        },
         children: [
             {
                 path: "/detailed/:city",
                 name: "detailed-favorites",
+                meta: {
+                    title: '7 Days',
+                },
                 component: () => import("../views/DetailedView.vue"),
             },
         ]

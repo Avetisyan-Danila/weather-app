@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div
-        v-if="!historyBack"
+        v-if="route.name === 'home'"
         class="header__button"
     >
       <img
@@ -12,7 +12,7 @@
       />
     </div>
     <div
-        v-else
+        v-else-if="hasHistory"
         class="header__button"
         @click="router.go(-1)"
     >
@@ -23,8 +23,26 @@
           height="16"
       />
     </div>
+    <!-- В случае, если на сайт зашли по ссылке на какой-нибудь маршрут (например: /search) -->
+    <div
+        v-else
+        class="header__button"
+    >
+      <img
+          :src="getImage('icons/menu.svg')"
+          alt="Menu"
+          width="16"
+          height="16"
+      />
+    </div>
 
-    <h2 class="header__title title title--md">Moscow</h2>
+    <h2 class="header__title title title--md">
+      <transition name="slide-title" mode="out-in">
+        <div :key="title">
+          {{ title ?? 'Surat' }}
+        </div>
+      </transition>
+    </h2>
 
     <transition name="fade" appear>
       <div
@@ -45,17 +63,25 @@
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
 import { useRoute, useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const router = useRouter();
 const route = useRoute();
 
-const historyBack = ref(window.history.state.back);
+const hasHistory = ref(window.history.state.back);
+const title = ref('');
 
 router.afterEach(async () => {
-  historyBack.value = window.history.state.back;
+  hasHistory.value = window.history.state.back;
 })
 
+// Наблюдение за изменением маршрута
+watch(
+    () => route.meta,
+    async meta => {
+      title.value = meta.title;
+    }
+)
 </script>
 
 <style lang="scss" scoped>
@@ -113,6 +139,8 @@ router.afterEach(async () => {
 }
 
 .header__title {
+  @include sb-s18-h18;
+
   position: absolute;
   z-index: -1;
   top: 50%;
