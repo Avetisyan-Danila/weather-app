@@ -4,12 +4,13 @@
       <router-view></router-view>
     </transition>
 
-    <app-input
-        class="favorites__input"
-        type="text"
-        name="favorite"
-        placeholder="Name of the city"
-    />
+    <form class="favorites__form" action="#">
+      <app-input
+          type="text"
+          name="favorite"
+          placeholder="Name of the city"
+      />
+    </form>
 
     <ul class="favorites__list">
       <li class="favorites__item">
@@ -47,7 +48,7 @@ import CityCard from "@/modules/city-card/CityCard.vue";
 @import "@/assets/scss/mixins/mixins";
 
 .favorites {
-  &__input {
+  &__form {
     margin-bottom: 40px;
   }
 

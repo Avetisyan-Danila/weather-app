@@ -5,12 +5,13 @@
     </transition>
 
     <div class="search__top">
-      <app-input
-          class="search__input"
-          type="text"
-          name="search"
-          placeholder="Name of the city"
-      />
+      <form class="search__form" action="#">
+        <app-input
+            type="text"
+            name="search"
+            placeholder="Name of the city"
+        />
+      </form>
 
       <div class="search__location">
         <img
@@ -77,7 +78,7 @@ import CityCard from "@/modules/city-card/CityCard.vue";
     margin-bottom: 40px;
   }
 
-  &__input {
+  &__form {
     flex-grow: 1;
   }
 
