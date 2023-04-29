@@ -106,6 +106,8 @@ import AppButton from "@/common/components/AppButton.vue";
   display: flex;
   flex-wrap: wrap;
   gap: 36px;
+
+  margin-bottom: 40px;
 }
 
 .feedback__item {
@@ -131,6 +133,5 @@ import AppButton from "@/common/components/AppButton.vue";
 
 .feedback__button {
   width: 100%;
-  margin-top: auto;
 }
 </style>
