@@ -23,64 +23,32 @@
     <div class="popular">
       <ul class="popular__list">
         <li class="popular__item">
-          <router-link class="popular__link" :to="{ name: 'detailed-search', params: { city: 'test' } }">
-            <div class="popular__info">
-              <div class="popular__title">Surat</div>
-              <div class="popular__weather">Sunny</div>
-            </div>
-            <img
-                class="popular__img"
-                :src="getImage('weather/cloudy.png')"
-                alt="Cloudy"
-                width="135"
-                height="106"
-            />
-          </router-link>
+          <city-card
+              :to="{ name: 'detailed-search', params: { city: 'test' } }"
+              title="Surat"
+              weather="Sunny"
+          />
         </li>
         <li class="popular__item">
-          <router-link class="popular__link" :to="{ name: 'detailed-search', params: { city: 'test' } }">
-            <div class="popular__info">
-              <div class="popular__title">Mumbai</div>
-              <div class="popular__weather">Rainy</div>
-            </div>
-            <img
-                class="popular__img"
-                :src="getImage('weather/rain.png')"
-                alt="Rain"
-                width="135"
-                height="106"
-            />
-          </router-link>
+          <city-card
+              :to="{ name: 'detailed-search', params: { city: 'test' } }"
+              title="Mumbai"
+              weather="Rain"
+          />
         </li>
         <li class="popular__item">
-          <router-link class="popular__link" :to="{ name: 'detailed-search', params: { city: 'test' } }">
-            <div class="popular__info">
-              <div class="popular__title">Chennai</div>
-              <div class="popular__weather">Rainy</div>
-            </div>
-            <img
-                class="popular__img"
-                :src="getImage('weather/rain-night.png')"
-                alt="Rain night"
-                width="135"
-                height="106"
-            />
-          </router-link>
+          <city-card
+              :to="{ name: 'detailed-search', params: { city: 'test' } }"
+              title="Chennai"
+              weather="Thunder"
+          />
         </li>
         <li class="popular__item">
-          <router-link class="popular__link" :to="{ name: 'detailed-search', params: { city: 'test' } }">
-            <div class="popular__info">
-              <div class="popular__title">Manali</div>
-              <div class="popular__weather">Sunny</div>
-            </div>
-            <img
-                class="popular__img"
-                :src="getImage('weather/sunny.png')"
-                alt="Sunny"
-                width="135"
-                height="106"
-            />
-          </router-link>
+          <city-card
+              :to="{ name: 'detailed-search', params: { city: 'test' } }"
+              title="Manali"
+              weather="Sunny"
+          />
         </li>
       </ul>
     </div>
@@ -90,6 +58,7 @@
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
 import AppInput from "@/common/components/AppInput.vue";
+import CityCard from "@/modules/city-card/CityCard.vue";
 
 </script>
 
@@ -133,40 +102,6 @@ import AppInput from "@/common/components/AppInput.vue";
     display: flex;
     flex-direction: column;
     gap: 50px;
-  }
-
-  &__link {
-    @include purple-gradient;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-
-    padding: 20px 30px;
-    height: 90px;
-
-    &:after {
-      width: 80%;
-      border-radius: 15px;
-    }
-  }
-
-  &__title {
-    @include sb-s20-h20;
-
-    color: $white;
-    margin-bottom: 10px;
-  }
-
-  &__weather {
-    @include m-s14-h14;
-
-    color: $white;
-  }
-
-  &__img {
-    position: absolute;
-    top: -15px;
-    right: 0px;
   }
 }
 </style>
