@@ -35,7 +35,7 @@ export const routes = [
         children: [
             {
                 path: "/detailed/:city",
-                name: "detailed-search",
+                name: "detailed-favorites",
                 component: () => import("../views/DetailedView.vue"),
             },
         ]
