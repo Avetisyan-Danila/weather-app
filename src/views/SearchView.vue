@@ -4,9 +4,12 @@
       <router-view></router-view>
     </transition>
     <div class="search__top">
-      <label class="search__input">
-        <input type="text" placeholder="Name of the city">
-      </label>
+      <app-input
+          class="search__input"
+          type="text"
+          placeholder="Name of the city"
+      />
+
       <div class="search__location">
         <img
             :src="getImage('icons/location.svg')"
@@ -86,6 +89,7 @@
 
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
+import AppInput from "@/common/components/AppInput.vue";
 
 </script>
 
@@ -104,40 +108,6 @@ import { getImage } from "@/common/helpers/getImage.js";
 
   &__input {
     flex-grow: 1;
-
-    input {
-      box-sizing: border-box;
-      width: 100%;
-      height: 38px;
-      padding: 5px 20px 5px 50px;
-
-      @include r-s15-h15;
-      color: $white;
-      background: transparent;
-      border: none;
-      border-radius: 15px;
-      outline: none;
-    }
-
-    @include purple-gradient;
-
-    &:after {
-      border-radius: 15px;
-    }
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 16px;
-
-      width: 16px;
-      height: 16px;
-
-      background-image: url(../assets/img/icons/search.svg);
-      background-size: 100% 100%;
-    }
   }
 
   &__location {

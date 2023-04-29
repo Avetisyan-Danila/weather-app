@@ -6,7 +6,7 @@
     <h1 class="visually-hidden">Weather forecast App</h1>
 
     <div class="detailed-forecast">
-      <h2 class="detailed-forecast__title title title--small">Sunny</h2>
+      <h2 class="detailed-forecast__title title title--sm">Sunny</h2>
       <img
           class="detailed-forecast__img"
           :src="getImage('weather/sunny.png')"

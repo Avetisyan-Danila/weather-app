@@ -6,15 +6,19 @@
   width: 100%;
   margin: 0;
 
-  &--big {
+  &--xl {
     @include sb-s18-h18;
+  }
+
+  &--lg {
+    @include r-s16-h24;
   }
 
   &--md {
     @include r-s14-h16;
   }
 
-  &--small {
+  &--sm {
     @include sb-s12-h18;
   }
 }
