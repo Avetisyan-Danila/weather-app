@@ -1,5 +1,16 @@
 <template>
   <div class="detailed">
+    <div class="detailed__add">
+      <div class="detailed__add-button">
+        <img
+            :src="getImage('icons/heart.svg')"
+            alt="Bell"
+            width="20"
+            height="20"
+        >
+      </div>
+    </div>
+
     <div class="detailed__info">
       <div class="detailed__top">
         <img
@@ -155,6 +166,28 @@ import StatsInfo from "@/modules/stats/StatsInfo.vue";
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  &__add {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__add-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    margin-bottom: 20px;
+    padding: 5px 8px;
+
+    border: 2px solid $white;
+    border-radius: 6px;
+
+    &--active {
+      background-color: $white;
+      color: $black;
+    }
   }
 
   &__info {
