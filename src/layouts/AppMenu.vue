@@ -34,7 +34,11 @@
         </router-link>
       </li>
       <li class="menu__item">
-        <router-link class="menu__link" to="/">
+        <router-link
+            class="menu__link"
+            :class="{'menu__link--active': route.name === 'feedback'}"
+            :to="{ name: 'feedback' }"
+        >
           <img
               :src="getImage('icons/feedback.svg')"
               alt="Feedback"
