@@ -26,7 +26,7 @@
               height="70"
           >
         </div>
-        <div class="feedback__weather">cloudy</div>
+        <div class="feedback__weather">Cloudy</div>
       </li>
       <li class="feedback__item">
         <div class="feedback__img">
