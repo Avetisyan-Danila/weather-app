@@ -28,4 +28,16 @@ export const routes = [
         name: "feedback",
         component: () => import("@/views/FeedbackView.vue"),
     },
+    {
+        path: "/favorites",
+        name: "favorites",
+        component: () => import("@/views/FavoritesView.vue"),
+        children: [
+            {
+                path: "/detailed/:city",
+                name: "detailed-search",
+                component: () => import("../views/DetailedView.vue"),
+            },
+        ]
+    },
 ];
