@@ -62,7 +62,10 @@ const input = computed({
     background: transparent;
     border: none;
     border-radius: 15px;
-    outline: none;
+
+    &:focus {
+      outline: 1px solid black;
+    }
   }
 
   @include purple-gradient;
