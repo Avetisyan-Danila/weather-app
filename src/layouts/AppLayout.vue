@@ -110,7 +110,12 @@ import { getImage } from "@/common/helpers/getImage.js";
 }
 
 .main {
+  display: flex;
   flex-grow: 1;
   padding: 45px 0 70px 0;
+
+  > div {
+    width: 100%;
+  }
 }
 </style>
