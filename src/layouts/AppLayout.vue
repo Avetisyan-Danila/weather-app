@@ -28,6 +28,7 @@ import { getImage } from "@/common/helpers/getImage.js";
 
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds";
+@import "@/assets/scss/breakpoints";
 @import "@/assets/scss/mixins/mixins";
 
 .default-layout {
@@ -46,7 +47,7 @@ import { getImage } from "@/common/helpers/getImage.js";
   border-radius: 35px;
   box-shadow: $shadow-medium;
 
-  @media (max-width: 415px) {
+  @media (max-width: $sm) {
     max-height: 100%;
     border-radius: 0;
   }
@@ -63,7 +64,7 @@ import { getImage } from "@/common/helpers/getImage.js";
     mix-blend-mode: soft-light;
     opacity: 0.5;
 
-    @media (max-width: 415px) {
+    @media (max-width: $sm) {
       position: fixed;
     }
   }
@@ -77,7 +78,7 @@ import { getImage } from "@/common/helpers/getImage.js";
     background: $dark-purple-gradient-no-rotate;
     opacity: 0.9;
 
-    @media (max-width: 415px) {
+    @media (max-width: $sm) {
       display: none;
     }
 
@@ -104,7 +105,7 @@ import { getImage } from "@/common/helpers/getImage.js";
     display: none;
   }
 
-  @media (max-width: 415px) {
+  @media (max-width: $sm) {
     margin: 60px 0 40px 0;
   }
 }

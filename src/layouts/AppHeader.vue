@@ -100,7 +100,7 @@ watch(
 
   padding-top: 20px;
 
-  @media (max-width: 415px) {
+  @media (max-width: $sm) {
     position: fixed;
     width: 100%;
     left: 0;
@@ -108,7 +108,7 @@ watch(
   }
 
   &:before {
-    @media (max-width: 415px) {
+    @media (max-width: $sm) {
       content: '';
       position: absolute;
       z-index: -1;

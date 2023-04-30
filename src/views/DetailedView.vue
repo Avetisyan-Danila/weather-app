@@ -152,6 +152,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds";
+@import "@/assets/scss/breakpoints";
 @import "@/assets/scss/mixins/mixins";
 
 .detailed {
@@ -265,6 +266,10 @@ onMounted(() => {
 }
 
 .weekly-weather {
+  @media (max-width: $sm) {
+    margin-bottom: 80px;
+  }
+
   &__list {
     @include clear-list;
 
