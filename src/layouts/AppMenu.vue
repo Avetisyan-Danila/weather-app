@@ -6,7 +6,7 @@
       >
         <router-link
             class="menu__link"
-            :class="{'menu__link--active': route.name === 'home' || route.matched[0]?.name === 'home'}"
+            :class="{'menu__link--active': route.name === 'home' || route.name === 'detailed-home'}"
             to="/"
         >
           <img
@@ -22,7 +22,7 @@
       >
         <router-link
             class="menu__link"
-            :class="{'menu__link--active': route.name === 'search' || route.matched[0]?.name === 'search'}"
+            :class="{'menu__link--active': route.name === 'search' || route.name === 'detailed-search'}"
             :to="{ name: 'search' }"
         >
           <img
@@ -50,7 +50,7 @@
       <li class="menu__item">
         <router-link
             class="menu__link"
-            :class="{'menu__link--active': route.name === 'favorites' || route.matched[0]?.name === 'favorites'}"
+            :class="{'menu__link--active': route.name === 'favorites' || route.name === 'detailed-favorites'}"
             :to="{ name: 'favorites' }"
         >
           <img

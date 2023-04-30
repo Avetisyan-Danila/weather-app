@@ -5,7 +5,7 @@ export const routes = [
         component: () => import("@/views/HomeView.vue"),
         children: [
             {
-                path: "/detailed/:city",
+                path: "detailed/:city",
                 name: "detailed-home",
                 meta: {
                     title: '7 Days',
@@ -23,7 +23,7 @@ export const routes = [
         },
         children: [
             {
-                path: "/detailed/:city",
+                path: "detailed/:city",
                 name: "detailed-search",
                 meta: {
                     title: '7 Days',
@@ -49,7 +49,7 @@ export const routes = [
         },
         children: [
             {
-                path: "/detailed/:city",
+                path: "detailed/:city",
                 name: "detailed-favorites",
                 meta: {
                     title: '7 Days',
