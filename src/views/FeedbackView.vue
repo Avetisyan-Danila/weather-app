@@ -152,6 +152,7 @@ import AppButton from "@/common/components/AppButton.vue";
   height: 100px;
 
   background-color: rgba(3, 3, 3, 0.23);
+  transition: 0.3s;
   border-radius: 50%;
 }
 
