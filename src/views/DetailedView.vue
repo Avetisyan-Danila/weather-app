@@ -139,8 +139,15 @@
 </template>
 
 <script setup>
-import { getImage } from "@/common/helpers/getImage.js";
 import StatsInfo from "@/modules/stats/StatsInfo.vue";
+import { getImage } from "@/common/helpers/getImage.js";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 250)
+})
 </script>
 
 <style lang="scss" scoped>
