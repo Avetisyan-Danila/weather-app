@@ -86,6 +86,7 @@ watch(
 
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds";
+@import "@/assets/scss/breakpoints";
 
 .header {
   box-sizing: border-box;

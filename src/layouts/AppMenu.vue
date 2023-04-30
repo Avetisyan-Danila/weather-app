@@ -74,6 +74,7 @@ const route = useRoute();
 
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds";
+@import "@/assets/scss/breakpoints";
 @import "@/assets/scss/mixins/mixins";
 
 .menu {
