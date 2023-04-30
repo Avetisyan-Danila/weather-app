@@ -1,13 +1,17 @@
 <template>
   <div class="feedback">
+    <transition name="fade" appear>
+      <router-view></router-view>
+    </transition>
+
     <h2 class="feedback__title title title--lg">
       Your feedback can help everyone see more
       accurate weather conditions!
     </h2>
-    <form action="#" @submit.prevent>
+    <form action="#" @submit.prevent="onSubmit">
       <ul class="feedback__list">
         <li class="feedback__item">
-          <input class="feedback__input" type="radio" name="weather" value="sunny" id="sunny">
+          <input class="feedback__input" v-model="picked" type="radio" name="weather" value="sunny" id="sunny">
           <label class="feedback__label" for="sunny">
             <span class="feedback__img">
               <img
@@ -22,7 +26,7 @@
           </label>
         </li>
         <li class="feedback__item">
-          <input class="feedback__input" type="radio" name="weather" value="cloudy" id="cloudy">
+          <input class="feedback__input" v-model="picked" type="radio" name="weather" value="cloudy" id="cloudy">
           <label class="feedback__label" for="cloudy">
             <span class="feedback__img">
               <img
@@ -36,7 +40,7 @@
           </label>
         </li>
         <li class="feedback__item">
-          <input class="feedback__input" type="radio" name="weather" value="rain" id="rain">
+          <input class="feedback__input" v-model="picked" type="radio" name="weather" value="rain" id="rain">
           <label class="feedback__label" for="rain">
             <span class="feedback__img">
               <img
@@ -50,7 +54,7 @@
           </label>
         </li>
         <li class="feedback__item">
-          <input class="feedback__input" type="radio" name="weather" value="snow" id="snow">
+          <input class="feedback__input" v-model="picked" type="radio" name="weather" value="snow" id="snow">
           <label class="feedback__label" for="snow">
             <span class="feedback__img">
               <img
@@ -64,7 +68,7 @@
           </label>
         </li>
         <li class="feedback__item">
-          <input class="feedback__input" type="radio" name="weather" value="storm" id="storm">
+          <input class="feedback__input" v-model="picked" type="radio" name="weather" value="storm" id="storm">
           <label class="feedback__label" for="storm">
             <span class="feedback__img">
               <img
@@ -78,7 +82,7 @@
           </label>
         </li>
         <li class="feedback__item">
-          <input class="feedback__input" type="radio" name="weather" value="thunder" id="thunder">
+          <input class="feedback__input" v-model="picked" type="radio" name="weather" value="thunder" id="thunder">
           <label class="feedback__label" for="thunder">
             <span class="feedback__img">
               <img
@@ -100,7 +104,19 @@
 
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import AppButton from "@/common/components/AppButton.vue";
+
+const router = useRouter();
+const picked = ref('');
+
+const onSubmit = () => {
+  if (!picked.value) return;
+
+  router.push({name: 'success'});
+  picked.value = '';
+}
 </script>
 
 <style lang="scss" scoped>

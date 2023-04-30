@@ -39,6 +39,13 @@ export const routes = [
         meta: {
             title: 'Feedback',
         },
+        children: [
+            {
+                path: "success",
+                name: "success",
+                component: () => import("@/views/SuccessView.vue"),
+            },
+        ]
     },
     {
         path: "/favorites",
