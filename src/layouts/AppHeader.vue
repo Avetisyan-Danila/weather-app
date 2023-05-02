@@ -13,7 +13,7 @@
         />
       </div>
       <div
-          v-else-if="hasHistory"
+          v-else-if="hasHistory && route.name !== 'success' && route.meta.title !== '7 Days'"
           class="header__button header__button--left"
           @click="router.go(-1)"
       >
@@ -26,7 +26,7 @@
       </div>
       <!-- В случае, если на сайт зашли по ссылке на какой-нибудь маршрут (например: /search) -->
       <div
-          v-else
+          v-else-if="route.name !== 'success' && route.meta.title !== '7 Days'"
           class="header__button header__button--left"
       >
         <img
@@ -62,7 +62,7 @@
 
     <transition name="fade" appear>
       <div
-          v-if="route.name === 'success'"
+          v-if="route.name === 'success' || route.meta.title === '7 Days'"
           class="header__button header__button--right"
           @click="router.go(-1)"
       >
