@@ -1,40 +1,42 @@
 <template>
   <header class="header">
-    <div
-        v-if="route.name === 'home'"
-        class="header__button"
-    >
-      <img
-          :src="getImage('icons/menu.svg')"
-          alt="Menu"
-          width="16"
-          height="16"
-      />
-    </div>
-    <div
-        v-else-if="hasHistory"
-        class="header__button"
-        @click="router.go(-1)"
-    >
-      <img
-          :src="getImage('icons/back.svg')"
-          alt="Menu"
-          width="16"
-          height="16"
-      />
-    </div>
-    <!-- В случае, если на сайт зашли по ссылке на какой-нибудь маршрут (например: /search) -->
-    <div
-        v-else
-        class="header__button"
-    >
-      <img
-          :src="getImage('icons/menu.svg')"
-          alt="Menu"
-          width="16"
-          height="16"
-      />
-    </div>
+    <transition-group name="slide-title" mode="out-in">
+      <div
+          v-if="route.name === 'home'"
+          class="header__button header__button--left"
+      >
+        <img
+            :src="getImage('icons/menu.svg')"
+            alt="Menu"
+            width="16"
+            height="16"
+        />
+      </div>
+      <div
+          v-else-if="hasHistory"
+          class="header__button header__button--left"
+          @click="router.go(-1)"
+      >
+        <img
+            :src="getImage('icons/back.svg')"
+            alt="Menu"
+            width="16"
+            height="16"
+        />
+      </div>
+      <!-- В случае, если на сайт зашли по ссылке на какой-нибудь маршрут (например: /search) -->
+      <div
+          v-else
+          class="header__button header__button--left"
+      >
+        <img
+            :src="getImage('icons/menu.svg')"
+            alt="Menu"
+            width="16"
+            height="16"
+        />
+      </div>
+    </transition-group>
 
     <h2 class="header__title title title--md">
       <transition name="slide-title" mode="out-in">
@@ -47,10 +49,25 @@
     <transition name="fade" appear>
       <div
           v-if="route.name === 'home'"
-          class="header__button header__button--refresh"
+          class="header__button header__button--right"
       >
         <img
             :src="getImage('icons/refresh.svg')"
+            alt="Меню"
+            width="16"
+            height="16"
+        />
+      </div>
+    </transition>
+
+    <transition name="fade" appear>
+      <div
+          v-if="route.name === 'success'"
+          class="header__button header__button--right"
+          @click="router.go(-1)"
+      >
+        <img
+            :src="getImage('icons/close.svg')"
             alt="Меню"
             width="16"
             height="16"
@@ -94,10 +111,7 @@ watch(
   z-index: 10;
   top: 0;
   width: 375px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  height: 55px;
 
   padding-top: 20px;
 
@@ -124,17 +138,25 @@ watch(
 }
 
 .header__button {
-  flex: 0 0 35px;
+  position: absolute;
+  top: 20px;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
+  width: 35px;
   height: 35px;
   background-color: rgba($white, 0.3);
   border-radius: 5px;
   cursor: pointer;
 
-  &--refresh {
+  &--left {
+    left: 0;
+  }
+
+  &--right {
+    right: 0;
     transform: translateX(-2px);
   }
 }
@@ -144,7 +166,7 @@ watch(
 
   position: absolute;
   z-index: -1;
-  top: 50%;
+  top: 30px;
   text-align: center;
 }
 </style>

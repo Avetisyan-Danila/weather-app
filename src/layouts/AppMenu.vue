@@ -36,7 +36,7 @@
       <li class="menu__item">
         <router-link
             class="menu__link"
-            :class="{'menu__link--active': route.name === 'feedback'}"
+            :class="{'menu__link--active': route.name === 'feedback' || route.name === 'success'}"
             :to="{ name: 'feedback' }"
         >
           <img
