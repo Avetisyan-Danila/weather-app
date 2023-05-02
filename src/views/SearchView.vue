@@ -5,11 +5,14 @@
     </transition>
 
     <div class="search__top">
-      <form class="search__form" action="#">
+      <form class="search__form" action="#" @submit.prevent="onSubmit">
         <app-input
             type="text"
             name="search"
             placeholder="Name of the city"
+            v-model="searchValue"
+            :is-valid="isValid"
+            :error-message="'Enter the name of the city'"
         />
       </form>
 
@@ -60,9 +63,25 @@
 
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
+import {ref, watch} from "vue";
 import AppInput from "@/common/components/AppInput.vue";
 import CityCard from "@/modules/city-card/CityCard.vue";
 
+const isValid = ref(true);
+const searchValue = ref('');
+
+watch(searchValue, () => {
+  isValid.value = true;
+})
+
+const onSubmit = () => {
+  if (!searchValue.value) {
+    isValid.value = false;
+    return;
+  }
+
+  console.log('Success')
+}
 </script>
 
 <style lang="scss" scoped>

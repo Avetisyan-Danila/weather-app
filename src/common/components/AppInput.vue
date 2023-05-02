@@ -6,14 +6,14 @@
         :name="name"
         :placeholder="placeholder"
         @input="emit('update:modelValue', $event.target.value)"
+        :class="{'error': !isValid}"
     />
   </label>
+  <div v-show="!isValid" class="error-message">{{ errorMessage }}</div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-
-const props = defineProps({
+defineProps({
   modelValue: {
     type: String,
     default: null
@@ -29,19 +29,18 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: ''
+  },
+  isValid: {
+    type: Boolean,
+    default: true,
+  },
+  errorMessage: {
+    type: String,
+    default: '',
   }
 })
 
 const emit = defineEmits(['update:modelValue'])
-
-const input = computed({
-  get () {
-    return props.modelValue
-  },
-  set (value) {
-    emit('update:modelValue', value)
-  }
-})
 </script>
 
 <style lang="scss" scoped>
@@ -60,11 +59,16 @@ const input = computed({
     @include r-s15-h15;
     color: $white;
     background: transparent;
-    border: none;
+    border: 2px solid transparent;
     border-radius: 15px;
+    transition: 0.4s;
 
     &:focus {
       outline: 1px solid black;
+    }
+
+    &.error {
+      border: 2px solid #e83939;
     }
   }
 
@@ -87,5 +91,12 @@ const input = computed({
     background-image: url(../../assets/img/icons/search.svg);
     background-size: 100% 100%;
   }
+}
+
+.error-message {
+  position: absolute;
+  color: #e83939;
+  margin-top: 5px;
+  padding-left: 10px;
 }
 </style>
