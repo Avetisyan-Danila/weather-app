@@ -78,16 +78,18 @@ const route = useRoute();
 @import "@/assets/scss/mixins/mixins";
 
 .menu {
-  position: sticky;
+  position: absolute;
   z-index: 10;
   bottom: 0;
   left: 50%;
+  transform: translateX(-50%);
   width: 375px;
 
   @media (max-width: $sm) {
     position: fixed;
     width: 100%;
     left: 0;
+    transform: translateX(0);
   }
 
   &:before {

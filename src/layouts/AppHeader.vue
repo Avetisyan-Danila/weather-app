@@ -107,19 +107,16 @@ watch(
 
 .header {
   box-sizing: border-box;
-  position: sticky;
+  position: absolute;
   z-index: 10;
   top: 0;
   width: 375px;
   height: 55px;
 
-  padding-top: 20px;
-
   @media (max-width: $sm) {
     position: fixed;
     width: 100%;
     left: 0;
-    padding: 20px 20px 0;
   }
 
   &:before {
@@ -153,11 +150,19 @@ watch(
 
   &--left {
     left: 0;
+
+    @media (max-width: $sm) {
+      left: 20px;
+    }
   }
 
   &--right {
     right: 0;
     transform: translateX(-2px);
+
+    @media (max-width: $sm) {
+      right: 20px;
+    }
   }
 }
 
