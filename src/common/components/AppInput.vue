@@ -7,6 +7,7 @@
         :placeholder="placeholder"
         @input="emit('update:modelValue', $event.target.value)"
         :class="{'error': !isValid}"
+        @focus="onFocus"
     />
   </label>
   <div v-show="!isValid" class="error-message">{{ errorMessage }}</div>
@@ -40,7 +41,14 @@ defineProps({
   }
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
+
+// Для того, чтобы убрать белое пространство сверху при вводе в инпут (Safari)
+const onFocus = () => {
+  setTimeout(() => {
+    window.scrollTo({ top: 1, behavior: "smooth" });
+  }, 100)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -56,7 +64,7 @@ const emit = defineEmits(['update:modelValue'])
     height: 38px;
     padding: 5px 20px 5px 50px;
 
-    @include r-s15-h15;
+    @include r-s16-h24;
     color: $white;
     background: transparent;
     border: 2px solid transparent;
@@ -64,7 +72,8 @@ const emit = defineEmits(['update:modelValue'])
     transition: 0.4s;
 
     &:focus {
-      outline: 1px solid black;
+      outline: none;
+      box-shadow: 0 0 3pt 2pt #957DCD;
     }
 
     &.error {
