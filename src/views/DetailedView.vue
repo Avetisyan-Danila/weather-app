@@ -141,12 +141,12 @@
 <script setup>
 import StatsInfo from "@/modules/stats/StatsInfo.vue";
 import { getImage } from "@/common/helpers/getImage.js";
-import { onMounted } from "vue";
+import {onMounted, onUnmounted} from "vue";
 
 onMounted(() => {
   setTimeout(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, 250)
+  }, 300)
 })
 </script>
 
