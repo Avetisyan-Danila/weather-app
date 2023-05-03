@@ -50,6 +50,7 @@ import CityCard from "@/modules/city-card/CityCard.vue";
 .favorites {
   &__form {
     margin-bottom: 40px;
+    padding: 0 4px;
   }
 
   &__list {

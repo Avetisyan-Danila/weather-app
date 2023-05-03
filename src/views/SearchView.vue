@@ -94,6 +94,7 @@ const onSubmit = () => {
     align-items: center;
     gap: 15px;
 
+    padding: 0 4px;
     margin-bottom: 40px;
   }
 
