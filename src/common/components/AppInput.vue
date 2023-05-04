@@ -77,7 +77,7 @@ const onFocus = () => {
     }
 
     &.error {
-      border: 2px solid $red;
+      box-shadow: 0 0 3pt 2pt $red;
     }
   }
 
@@ -105,7 +105,7 @@ const onFocus = () => {
 .error-message {
   position: absolute;
   color: $red;
-  margin-top: 5px;
+  margin-top: 10px;
   padding-left: 10px;
 }
 </style>
