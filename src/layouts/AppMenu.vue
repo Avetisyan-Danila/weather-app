@@ -6,7 +6,7 @@
       >
         <router-link
             class="menu__link"
-            :class="{'menu__link--active': route.name === 'home' || route.name === 'detailed-home'}"
+            :class="{'menu__link--active': route.name === 'home' || isDetailedOpen('home')}"
             to="/"
         >
           <img
@@ -22,7 +22,7 @@
       >
         <router-link
             class="menu__link"
-            :class="{'menu__link--active': route.name === 'search' || route.name === 'detailed-search'}"
+            :class="{'menu__link--active': route.name === 'search' || isDetailedOpen('search')}"
             :to="{ name: 'search' }"
         >
           <img
@@ -50,7 +50,7 @@
       <li class="menu__item">
         <router-link
             class="menu__link"
-            :class="{'menu__link--active': route.name === 'favorites' || route.name === 'detailed-favorites'}"
+            :class="{'menu__link--active': route.name === 'favorites' || isDetailedOpen('favorites')}"
             :to="{ name: 'favorites' }"
         >
           <img
@@ -67,9 +67,16 @@
 
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
 
 const route = useRoute();
+const router = useRouter();
+
+const prevRoute = ref(null);
+router.afterEach((to, from) => prevRoute.value = from);
+
+const isDetailedOpen = (name) => route.name === 'detailed' && prevRoute.value.name === name;
 </script>
 
 <style lang="scss" scoped>
