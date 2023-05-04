@@ -10,6 +10,8 @@ export const router = createRouter({
 });
 
 router.afterEach(async (to, from) => {
+    // Для десктопов, так как верхняя точка у них - wrapper
     document.querySelector('#wrapper').scrollTo(0, 0)
+
     document.title = to.meta.title ? `Weather App | ${to.meta.title}` : 'Weather App';
 })
