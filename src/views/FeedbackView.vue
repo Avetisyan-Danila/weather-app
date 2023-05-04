@@ -97,6 +97,12 @@
         </li>
       </ul>
 
+      <div class="feedback__error">
+        <transition name="fade" appear>
+          <span v-if="showError">Select weather conditions</span>
+        </transition>
+      </div>
+
       <app-button class="feedback__button" type="submit">Submit</app-button>
     </form>
   </div>
@@ -104,16 +110,23 @@
 
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import AppButton from "@/common/components/AppButton.vue";
 
 const router = useRouter();
 const picked = ref('');
+const showError = ref(false);
+
+watch(picked, () => showError.value = false);
 
 const onSubmit = () => {
-  if (!picked.value) return;
+  if (!picked.value) {
+    showError.value = true;
+    return;
+  }
 
+  showError.value = false;
   router.push({name: 'success'});
   picked.value = '';
 }
@@ -170,6 +183,14 @@ const onSubmit = () => {
   background-color: rgba(3, 3, 3, 0.23);
   transition: 0.3s;
   border-radius: 50%;
+}
+
+.feedback__error {
+  @include m-s14-h14;
+  height: 20px;
+  color: $red;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .feedback__button {
