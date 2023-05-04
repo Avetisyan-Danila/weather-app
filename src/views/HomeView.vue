@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <transition name="slide" mode="out-in">
-      <router-view></router-view>
-    </transition>
     <h1 class="visually-hidden">Weather forecast App</h1>
 
     <div class="detailed-forecast">
@@ -161,7 +158,7 @@
           :space-between="10"
       >
         <swiper-slide class="other-cities__item">
-          <router-link class="other-cities__link" :to="{ name: 'detailed-home', params: { city: 'test' } }">
+          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { from: 'home', city: 'test' } }">
             <div class="other-cities__img">
               <img
                   :src="getImage('weather/cloudy.png')"
@@ -178,7 +175,7 @@
           </router-link>
         </swiper-slide>
         <swiper-slide class="other-cities__item">
-          <router-link class="other-cities__link" :to="{ name: 'detailed-home', params: { city: 'test' } }">
+          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { from: 'home', city: 'test' } }">
             <div class="other-cities__img">
               <img
                   :src="getImage('weather/sunny.png')"
@@ -195,7 +192,7 @@
           </router-link>
         </swiper-slide>
         <swiper-slide class="other-cities__item">
-          <router-link class="other-cities__link" :to="{ name: 'detailed-home', params: { city: 'test' } }">
+          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { from: 'home', city: 'test' } }">
             <div class="other-cities__img">
               <img
                   :src="getImage('weather/thunder.png')"
@@ -212,7 +209,7 @@
           </router-link>
         </swiper-slide>
         <swiper-slide class="other-cities__item">
-          <router-link class="other-cities__link" :to="{ name: 'detailed-home', params: { city: 'test' } }">
+          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { from: 'home', city: 'test' } }">
             <div class="other-cities__img">
               <img
                   :src="getImage('weather/sunny.png')"

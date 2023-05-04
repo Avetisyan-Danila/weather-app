@@ -12,7 +12,7 @@
     </div>
 
     <div class="detailed__info">
-      <div class="detailed__top">
+      <div class="detailed__info-top">
         <img
             class="detailed__img"
             :src="getImage('weather/cloudy.png')"
@@ -141,7 +141,7 @@
 <script setup>
 import StatsInfo from "@/modules/stats/StatsInfo.vue";
 import { getImage } from "@/common/helpers/getImage.js";
-import {onMounted, onUnmounted} from "vue";
+import { onMounted } from "vue";
 
 onMounted(() => {
   setTimeout(() => {
@@ -156,26 +156,6 @@ onMounted(() => {
 @import "@/assets/scss/mixins/mixins";
 
 .detailed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9;
-
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  padding: 100px 20px 100px 20px;
-
-  background: $dark-purple-gradient;
-
-  overflow: hidden;
-  overflow-y: scroll;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   &__add {
     display: flex;
     justify-content: flex-end;
@@ -213,7 +193,7 @@ onMounted(() => {
     }
   }
 
-  &__top {
+  &__info-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
