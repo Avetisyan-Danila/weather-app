@@ -8,7 +8,7 @@
       >
     </div>
 
-    <div class="wrapper">
+    <div class="wrapper" id="wrapper">
       <app-header />
       <div class="main">
         <transition name="fade" appear>
