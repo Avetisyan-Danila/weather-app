@@ -26,28 +26,28 @@
       <ul class="popular__list">
         <li class="popular__item">
           <city-card
-              :to="{ name: 'detailed', params: { from: 'search', city: 'test' } }"
+              :to="{ name: 'detailed', params: { city: 'test' } }"
               title="Surat"
               weather="Sunny"
           />
         </li>
         <li class="popular__item">
           <city-card
-              :to="{ name: 'detailed', params: { from: 'search', city: 'test' } }"
+              :to="{ name: 'detailed', params: { city: 'test' } }"
               title="Mumbai"
               weather="Rain"
           />
         </li>
         <li class="popular__item">
           <city-card
-              :to="{ name: 'detailed', params: { from: 'search', city: 'test' } }"
+              :to="{ name: 'detailed', params: { city: 'test' } }"
               title="Chennai"
               weather="Thunder"
           />
         </li>
         <li class="popular__item">
           <city-card
-              :to="{ name: 'detailed', params: { from: 'search', city: 'test' } }"
+              :to="{ name: 'detailed', params: { city: 'test' } }"
               title="Manali"
               weather="Sunny"
           />

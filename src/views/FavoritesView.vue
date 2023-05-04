@@ -14,21 +14,21 @@
     <ul class="favorites__list">
       <li class="favorites__item">
         <city-card
-            :to="{ name: 'detailed', params: { from: 'favorites', city: 'test' } }"
+            :to="{ name: 'detailed', params: { city: 'test' } }"
             title="Surat"
             weather="Sunny"
         />
       </li>
       <li class="favorites__item">
         <city-card
-            :to="{ name: 'detailed', params: { from: 'favorites', city: 'test' } }"
+            :to="{ name: 'detailed', params: { city: 'test' } }"
             title="Mumbai"
             weather="Rain"
         />
       </li>
       <li class="favorites__item">
         <city-card
-            :to="{ name: 'detailed', params: { from: 'favorites', city: 'test' } }"
+            :to="{ name: 'detailed', params: { city: 'test' } }"
             title="Chennai"
             weather="Thunder"
         />
