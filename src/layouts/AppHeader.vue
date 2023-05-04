@@ -13,7 +13,7 @@
         />
       </div>
       <div
-          v-else-if="hasHistory && route.name !== 'success' && route.meta.title !== '7 Days'"
+          v-else-if="hasHistory && route.name !== 'success' && route.name !== 'detailed'"
           class="header__button header__button--left"
           @click="router.go(-1)"
       >
@@ -26,7 +26,7 @@
       </div>
       <!-- В случае, если на сайт зашли по ссылке на какой-нибудь маршрут (например: /search) -->
       <div
-          v-else-if="route.name !== 'success' && route.meta.title !== '7 Days'"
+          v-else-if="route.name !== 'success' && route.name !== 'detailed'"
           class="header__button header__button--left"
       >
         <img
@@ -88,7 +88,7 @@ const route = useRoute();
 const hasHistory = ref(!!window.history.state.back);
 const title = ref('');
 
-router.afterEach(async () => {
+router.afterEach(() => {
   hasHistory.value = !!window.history.state.back;
 })
 
