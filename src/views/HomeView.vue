@@ -231,10 +231,11 @@
 </template>
 
 <script setup>
-import StatsInfo from "@/modules/stats/StatsInfo.vue";
-import { getImage } from "@/common/helpers/getImage.js";
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
+
+import StatsInfo from "@/modules/stats/StatsInfo.vue";
+import { getImage } from "@/common/helpers/getImage.js";
 </script>
 
 <style lang="scss" scoped>
