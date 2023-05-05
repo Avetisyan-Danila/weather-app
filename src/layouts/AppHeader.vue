@@ -41,7 +41,7 @@
     <h2 class="header__title title title--md">
       <transition name="fade-without-jump" mode="out-in">
         <div :key="title">
-          {{ title ?? 'Surat' }}
+          {{ title ?? MAIN_CITY }}
         </div>
       </transition>
     </h2>
@@ -81,6 +81,7 @@
 import { getImage } from "@/common/helpers/getImage.js";
 import { useRoute, useRouter } from "vue-router";
 import { ref, watch } from "vue";
+import { MAIN_CITY } from "@/common/constants";
 
 const router = useRouter();
 const route = useRoute();
