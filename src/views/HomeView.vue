@@ -236,6 +236,15 @@ import 'swiper/css';
 
 import StatsInfo from "@/modules/stats/StatsInfo.vue";
 import { getImage } from "@/common/helpers/getImage.js";
+import { MAIN_CITY } from "@/common/constants";
+import { useWeatherStore } from "@/stores/weather.js";
+import { onMounted } from "vue";
+
+const weatherStore = useWeatherStore();
+
+onMounted(() => {
+  weatherStore.setCityWeather(MAIN_CITY, 7)
+})
 </script>
 
 <style lang="scss" scoped>
