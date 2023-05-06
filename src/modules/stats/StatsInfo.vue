@@ -30,7 +30,7 @@
           width="24"
           height="24"
       >
-      <span class="stats__value">{{ Math.floor(weatherInfo.current.wind_kph) }}km/h</span>
+      <span class="stats__value">{{ Math.round(weatherInfo.current.wind_kph) }}km/h</span>
       <span class="stats__name">Wind speed</span>
     </li>
   </ul>
