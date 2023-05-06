@@ -238,12 +238,15 @@ import StatsInfo from "@/modules/stats/StatsInfo.vue";
 import { getImage } from "@/common/helpers/getImage.js";
 import { MAIN_CITY } from "@/common/constants";
 import { useWeatherStore } from "@/stores/weather.js";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 const weatherStore = useWeatherStore();
 
-onMounted(() => {
-  weatherStore.setCityWeather(MAIN_CITY, 7)
+const mainCityWeather = ref(null);
+
+onMounted(async () => {
+  await weatherStore.setCityWeather(MAIN_CITY, 1);
+  mainCityWeather.value = weatherStore.getCityWeather(MAIN_CITY);
 })
 </script>
 
