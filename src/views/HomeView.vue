@@ -2,23 +2,26 @@
   <div class="home">
     <h1 class="visually-hidden">Weather forecast App</h1>
 
-    <div class="detailed-forecast">
+    <div class="detailed-forecast" v-if="mainCityWeather">
       <h2 class="detailed-forecast__title title title--sm">Sunny</h2>
       <img
           class="detailed-forecast__img"
-          :src="getImage('weather/sunny.svg')"
-          alt="Sunny"
+          :src="getImage(`weather/${mainCityWeather.currentDayIcon}.svg`)"
+          :alt="mainCityWeather.currentDayIcon"
           width="172"
           height="139"
       >
-      <div class="detailed-forecast__degrees">23</div>
+      <div class="detailed-forecast__degrees">{{ mainCityWeather.current.temp_c }}</div>
       <div class="detailed-forecast__date">
-        <span>Friday, </span>
-        <span>26 August 2022</span>
-        <span> | 10:00</span>
+        <span>{{ mainCityWeather.localtimeInfo.weekDay }}, </span>
+        <span>{{ mainCityWeather.localtimeInfo.date }}</span>
+        <span> | {{ mainCityWeather.localtimeInfo.time }}</span>
       </div>
 
-      <stats-info class="detailed-forecast__stats" />
+      <stats-info
+          :weather-info="mainCityWeather"
+          class="detailed-forecast__stats"
+      />
     </div>
     <div class="weekly-forecast">
       <div class="weekly-forecast__header">
