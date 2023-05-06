@@ -1,5 +1,5 @@
 <template>
-  <ul class="stats">
+  <ul class="stats" v-if="weatherInfo">
     <li class="stats__point">
       <img
           class="stats__img"
@@ -8,7 +8,7 @@
           width="24"
           height="24"
       >
-      <span class="stats__value">30%</span>
+      <span class="stats__value">{{ weatherInfo.forecast.forecastday[0].day.daily_chance_of_rain }}%</span>
       <span class="stats__name">Precipitation</span>
     </li>
     <li class="stats__point">
@@ -19,7 +19,7 @@
           width="24"
           height="24"
       >
-      <span class="stats__value">20%</span>
+      <span class="stats__value">{{ weatherInfo.current.humidity }}%</span>
       <span class="stats__name">Humidity</span>
     </li>
     <li class="stats__point">
@@ -30,7 +30,7 @@
           width="24"
           height="24"
       >
-      <span class="stats__value">9km/h</span>
+      <span class="stats__value">{{ Math.floor(weatherInfo.current.wind_kph) }}km/h</span>
       <span class="stats__name">Wind speed</span>
     </li>
   </ul>
@@ -39,6 +39,12 @@
 <script setup>
 import { getImage } from "@/common/helpers/getImage.js";
 
+defineProps({
+  weatherInfo: {
+    type: Object,
+    required: true,
+  }
+})
 </script>
 
 <style lang="scss" scoped>
