@@ -1,6 +1,6 @@
 import { API_KEY, BASE_URL } from "@/common/constants";
 
-export const getCityWeather = (city, days) => {
+export const fetchCityWeather = (city, days) => {
     return fetch(`${BASE_URL}/forecast.json?key=${API_KEY}&q=${city}&days=${days}&aqi=no&alerts=no`)
         .then((response) => response.json())
 }
