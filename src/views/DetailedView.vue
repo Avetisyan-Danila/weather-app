@@ -15,7 +15,7 @@
       <div class="detailed__info-top">
         <img
             class="detailed__img"
-            :src="getImage('weather/cloudy.png')"
+            :src="getImage('weather/cloudy.svg')"
             alt="Cloudy"
             width="169"
             height="132"
@@ -36,7 +36,7 @@
           <div class="weekly-weather__weather">
             <img
                 class="weekly-weather__img"
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="50"
                 height="50"
@@ -53,7 +53,7 @@
           <div class="weekly-weather__weather">
             <img
                 class="weekly-weather__img"
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="50"
                 height="50"
@@ -70,7 +70,7 @@
           <div class="weekly-weather__weather">
             <img
                 class="weekly-weather__img"
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="50"
                 height="50"
@@ -87,7 +87,7 @@
           <div class="weekly-weather__weather">
             <img
                 class="weekly-weather__img"
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="50"
                 height="50"
@@ -104,7 +104,7 @@
           <div class="weekly-weather__weather">
             <img
                 class="weekly-weather__img"
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="50"
                 height="50"
@@ -121,7 +121,7 @@
           <div class="weekly-weather__weather">
             <img
                 class="weekly-weather__img"
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="50"
                 height="50"

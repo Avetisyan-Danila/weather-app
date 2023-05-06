@@ -6,7 +6,7 @@
     </div>
     <img
         class="city-card__img"
-        :src="getImage(`weather/${weather.toLowerCase()}.png`)"
+        :src="getImage(`weather/${weather.toLowerCase()}.svg`)"
         alt="Cloudy"
         width="135"
         height="106"
@@ -66,7 +66,7 @@ defineProps({
 
   &__img {
     position: absolute;
-    top: -15px;
+    top: -20px;
     right: 0px;
   }
 }

@@ -6,7 +6,7 @@
       <h2 class="detailed-forecast__title title title--sm">Sunny</h2>
       <img
           class="detailed-forecast__img"
-          :src="getImage('weather/sunny.png')"
+          :src="getImage('weather/sunny.svg')"
           alt="Sunny"
           width="172"
           height="139"
@@ -34,7 +34,7 @@
           <div class="weekly-forecast__time">10 AM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="40"
                 height="40"
@@ -46,7 +46,7 @@
           <div class="weekly-forecast__time">12 AM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/rain.png')"
+                :src="getImage('weather/rain.svg')"
                 alt="Rain"
                 width="40"
                 height="40"
@@ -58,7 +58,7 @@
           <div class="weekly-forecast__time">1 PM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/rain.png')"
+                :src="getImage('weather/rain.svg')"
                 alt="Rain"
                 width="40"
                 height="40"
@@ -70,7 +70,7 @@
           <div class="weekly-forecast__time">3 PM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/thunder.png')"
+                :src="getImage('weather/thunder.svg')"
                 alt="Thunder"
                 width="40"
                 height="40"
@@ -82,7 +82,7 @@
           <div class="weekly-forecast__time">5 PM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/rain-night.png')"
+                :src="getImage('weather/rain.svg')"
                 alt="Rain night"
                 width="40"
                 height="40"
@@ -94,7 +94,7 @@
           <div class="weekly-forecast__time">10 PM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/rain-night.png')"
+                :src="getImage('weather/rain.svg')"
                 alt="Rain night"
                 width="40"
                 height="40"
@@ -106,7 +106,7 @@
           <div class="weekly-forecast__time">1 AM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="40"
                 height="40"
@@ -118,7 +118,7 @@
           <div class="weekly-forecast__time">4 AM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="40"
                 height="40"
@@ -130,7 +130,7 @@
           <div class="weekly-forecast__time">7 AM</div>
           <div class="weekly-forecast__img">
             <img
-                :src="getImage('weather/cloudy.png')"
+                :src="getImage('weather/cloudy.svg')"
                 alt="Cloudy"
                 width="40"
                 height="40"
@@ -161,7 +161,7 @@
           <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: 'test' } }">
             <div class="other-cities__img">
               <img
-                  :src="getImage('weather/cloudy.png')"
+                  :src="getImage('weather/cloudy.svg')"
                   alt="Cloudy"
                   width="40"
                   height="40"
@@ -178,7 +178,7 @@
           <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: 'test' } }">
             <div class="other-cities__img">
               <img
-                  :src="getImage('weather/sunny.png')"
+                  :src="getImage('weather/sunny.svg')"
                   alt="Sunny"
                   width="40"
                   height="40"
@@ -195,7 +195,7 @@
           <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: 'test' } }">
             <div class="other-cities__img">
               <img
-                  :src="getImage('weather/thunder.png')"
+                  :src="getImage('weather/thunder.svg')"
                   alt="Thunder"
                   width="40"
                   height="40"
@@ -212,7 +212,7 @@
           <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: 'test' } }">
             <div class="other-cities__img">
               <img
-                  :src="getImage('weather/sunny.png')"
+                  :src="getImage('weather/sunny.svg')"
                   alt="Sunny"
                   width="40"
                   height="40"

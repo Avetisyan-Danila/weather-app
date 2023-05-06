@@ -15,7 +15,7 @@
           <label class="feedback__label" for="sunny">
             <span class="feedback__img">
               <img
-                  :src="getImage('weather/sunny.png')"
+                  :src="getImage('weather/sunny.svg')"
                   alt="Sunny"
                   width="70"
                   height="70"
@@ -30,7 +30,7 @@
           <label class="feedback__label" for="cloudy">
             <span class="feedback__img">
               <img
-                  :src="getImage('weather/cloudy.png')"
+                  :src="getImage('weather/cloudy.svg')"
                   alt="Cloudy"
                   width="70"
                   height="70"
@@ -44,7 +44,7 @@
           <label class="feedback__label" for="rain">
             <span class="feedback__img">
               <img
-                  :src="getImage('weather/rain.png')"
+                  :src="getImage('weather/rain.svg')"
                   alt="Rain"
                   width="70"
                   height="70"
@@ -58,7 +58,7 @@
           <label class="feedback__label" for="snow">
             <span class="feedback__img">
               <img
-                  :src="getImage('weather/snow.png')"
+                  :src="getImage('weather/snow.svg')"
                   alt="Snow"
                   width="70"
                   height="70"
@@ -72,7 +72,7 @@
           <label class="feedback__label" for="storm">
             <span class="feedback__img">
               <img
-                  :src="getImage('weather/storm.png')"
+                  :src="getImage('weather/storm.svg')"
                   alt="Storm"
                   width="70"
                   height="70"
@@ -86,7 +86,7 @@
           <label class="feedback__label" for="thunder">
             <span class="feedback__img">
               <img
-                  :src="getImage('weather/thunder.png')"
+                  :src="getImage('weather/thunder.svg')"
                   alt="Thunder"
                   width="70"
                   height="70"
