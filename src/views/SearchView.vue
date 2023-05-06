@@ -45,13 +45,6 @@
               weather="Thunder"
           />
         </li>
-        <li class="popular__item">
-          <city-card
-              :to="{ name: 'detailed', params: { city: 'test' } }"
-              title="Manali"
-              weather="Sunny"
-          />
-        </li>
       </ul>
     </div>
   </div>
