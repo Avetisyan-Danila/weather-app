@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import { getCityWeather } from "@/services/forecast-service.js";
+import { normalizeWeatherInfo } from "@/common/helpers/normalizeWeatherInfo.js";
+import { getOneMinuteAgo } from "@/common/helpers/getOneMinuteAgo.js";
 
 export const useWeatherStore = defineStore("weather", {
     state: () => ({
@@ -10,11 +12,17 @@ export const useWeatherStore = defineStore("weather", {
     },
     actions: {
         async setCityWeather(cityName, days) {
-            // Если погода для города уже есть, то не делать повторный запрос
-            if (this.cityWeather(cityName)) return;
+            // Если погода для города уже есть, то делать повторные запрос, если данные получены более минуты назад
+            if (this.cityWeather(cityName)) {
+                if (!getOneMinuteAgo(this.cityWeather(cityName).dateReceipt)) {
+                    return
+                } else {
+                    this.citiesWeather = this.citiesWeather.filter(city => city.location.name !== cityName)
+                }
+            }
 
             const cityWeather = await getCityWeather(cityName, days);
-            this.citiesWeather.push(cityWeather)
+            this.citiesWeather.push(normalizeWeatherInfo(cityWeather));
         },
     }
 })
