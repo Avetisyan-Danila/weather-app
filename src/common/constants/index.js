@@ -5,3 +5,17 @@ export const MAIN_CITY = 'Moscow';
 
 export const MINUTE_IN_SEC = 60;
 export const ONE_MINUTE = 1;
+
+export const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
+
+export const weekDays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+];
