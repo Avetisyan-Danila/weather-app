@@ -9,9 +9,9 @@
           :src="getImage(`weather/${mainCityWeather.currentDayIcon}.svg`)"
           :alt="mainCityWeather.currentDayIcon"
           width="172"
-          height="139"
+          height="172"
       >
-      <div class="detailed-forecast__degrees">{{ mainCityWeather.current.temp_c }}</div>
+      <div class="detailed-forecast__degrees">{{ Math.round(mainCityWeather.current.temp_c) }}</div>
       <div class="detailed-forecast__date">
         <span>{{ mainCityWeather.localtimeInfo.weekDay }}, </span>
         <span>{{ mainCityWeather.localtimeInfo.date }}</span>
@@ -23,123 +23,34 @@
           class="detailed-forecast__stats"
       />
     </div>
-    <div class="weekly-forecast">
-      <div class="weekly-forecast__header">
-        <div class="weekly-forecast__title">Today</div>
-        <div class="weekly-forecast__title">7-Day Forecasts</div>
+    <div class="hourly-forecast" v-if="mainCityWeather">
+      <div class="hourly-forecast__header">
+        <div class="hourly-forecast__title">Today</div>
+        <div class="hourly-forecast__title">7-Day Forecasts</div>
       </div>
       <swiper
-          class="weekly-forecast__list"
+          class="hourly-forecast__list"
           :slides-per-view="'auto'"
           :space-between="10"
       >
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">10 AM</div>
-          <div class="weekly-forecast__img">
+        <swiper-slide
+            v-for="hourInfo in mainCityWeather.forecast.forecastday[0].hour"
+            class="hourly-forecast__item"
+        >
+          <div class="hourly-forecast__time">
+            {{ normalizeTime(new Date(hourInfo.time).getHours()) }}
+            :
+            {{ normalizeTime(new Date(hourInfo.time).getMinutes()) }}
+          </div>
+          <div class="hourly-forecast__img">
             <img
-                :src="getImage('weather/cloudy.svg')"
+                :src="getImage(`weather/${getWeatherIconName(hourInfo.condition.code, new Date(hourInfo.time).getHours())}.svg`)"
                 alt="Cloudy"
                 width="40"
                 height="40"
             >
           </div>
-          <div class="weekly-forecast__degrees">23</div>
-        </swiper-slide>
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">12 AM</div>
-          <div class="weekly-forecast__img">
-            <img
-                :src="getImage('weather/rain.svg')"
-                alt="Rain"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="weekly-forecast__degrees">23</div>
-        </swiper-slide>
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">1 PM</div>
-          <div class="weekly-forecast__img">
-            <img
-                :src="getImage('weather/rain.svg')"
-                alt="Rain"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="weekly-forecast__degrees">23</div>
-        </swiper-slide>
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">3 PM</div>
-          <div class="weekly-forecast__img">
-            <img
-                :src="getImage('weather/thunder.svg')"
-                alt="Thunder"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="weekly-forecast__degrees">23</div>
-        </swiper-slide>
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">5 PM</div>
-          <div class="weekly-forecast__img">
-            <img
-                :src="getImage('weather/rain.svg')"
-                alt="Rain night"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="weekly-forecast__degrees">23</div>
-        </swiper-slide>
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">10 PM</div>
-          <div class="weekly-forecast__img">
-            <img
-                :src="getImage('weather/rain.svg')"
-                alt="Rain night"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="weekly-forecast__degrees">23</div>
-        </swiper-slide>
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">1 AM</div>
-          <div class="weekly-forecast__img">
-            <img
-                :src="getImage('weather/cloudy.svg')"
-                alt="Cloudy"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="weekly-forecast__degrees">23</div>
-        </swiper-slide>
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">4 AM</div>
-          <div class="weekly-forecast__img">
-            <img
-                :src="getImage('weather/cloudy.svg')"
-                alt="Cloudy"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="weekly-forecast__degrees">23</div>
-        </swiper-slide>
-        <swiper-slide class="weekly-forecast__item">
-          <div class="weekly-forecast__time">7 AM</div>
-          <div class="weekly-forecast__img">
-            <img
-                :src="getImage('weather/cloudy.svg')"
-                alt="Cloudy"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="weekly-forecast__degrees">23</div>
+          <div class="hourly-forecast__degrees">{{ Math.round(hourInfo.temp_c) }}</div>
         </swiper-slide>
       </swiper>
     </div>
@@ -242,6 +153,8 @@ import { getImage } from "@/common/helpers/getImage.js";
 import { MAIN_CITY } from "@/common/constants";
 import { useWeatherStore } from "@/stores/weather.js";
 import { onMounted, ref } from "vue";
+import {normalizeTime} from "../common/helpers/normalizeTime.js";
+import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
 
 const weatherStore = useWeatherStore();
 
@@ -292,7 +205,7 @@ onMounted(async () => {
   }
 }
 
-.weekly-forecast {
+.hourly-forecast {
   margin-bottom: 30px;
 
   &__header {
