@@ -29,7 +29,7 @@
     <transition>
       <div class="hourly-forecast" v-if="mainCityForecast">
         <div class="hourly-forecast__header">
-          <div class="hourly-forecast__title">Today</div>
+          <div class="hourly-forecast__title">24h forecast</div>
           <router-link :to="{ name: 'detailed', params: { city: MAIN_CITY } }">
             <app-button class="hourly-forecast__button" bordered>7-Day Forecasts</app-button>
           </router-link>
