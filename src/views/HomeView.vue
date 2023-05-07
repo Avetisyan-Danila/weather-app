@@ -178,35 +178,48 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 
 import StatsInfo from "@/modules/stats/StatsInfo.vue";
+import AppButton from "@/common/components/AppButton.vue";
+import weatherConditions from "@/common/enums/weatherConditions.js";
+import otherCitiesNames from "@/mocks/other-cities-names.json";
 import { getImage } from "@/common/helpers/getImage.js";
 import { MAIN_CITY } from "@/common/constants";
 import { useWeatherStore } from "@/stores/weather.js";
-import {computed, onMounted, ref} from "vue";
-import {normalizeTime} from "../common/helpers/normalizeTime.js";
-import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
-import weatherConditions from "../common/enums/weatherConditions.js";
-import {capitalizeFirstLetter} from "../common/helpers/capitalizeFirstLetter.js";
-import AppButton from "@/common/components/AppButton.vue";
+import { computed, onMounted, ref } from "vue";
+import { normalizeTime } from "@/common/helpers/normalizeTime.js";
+import { getWeatherIconName } from "@/common/helpers/getWeatherIconName.js";
+import { capitalizeFirstLetter } from "@/common/helpers/capitalizeFirstLetter.js";
 
 const weatherStore = useWeatherStore();
 
 const mainCityForecast = ref(null);
 
+// Почасовая погода главного города на сегодня
 const mainCityForecastCurrentDayHourly = computed(() => {
   return mainCityForecast?.value?.forecast.forecastday[0].hour;
 });
 
+// Почасовая погода главного города на завтра
 const mainCityForecastNextDayHourly = computed(() => {
   return mainCityForecast?.value?.forecast.forecastday[1].hour;
 });
 
+// Время в главном городе
 const mainCityCurrentTime = computed(() => {
   return new Date(mainCityForecast?.value?.location.localtime);
 });
 
+const otherCitiesForecast = ref([]);
+
 onMounted(async () => {
+  // Получение информации по главному городу
   await weatherStore.setCityWeather(MAIN_CITY, 2);
   mainCityForecast.value = weatherStore.getCityWeather(MAIN_CITY);
+
+  // Получение информации по Other cities
+  for (const value of otherCitiesNames) {
+    await weatherStore.setCityWeather(value.name, 1)
+    otherCitiesForecast.value.push(weatherStore.getCityWeather(value.name))
+  }
 })
 </script>
 
