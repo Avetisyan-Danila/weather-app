@@ -2,58 +2,85 @@
   <div class="home">
     <h1 class="visually-hidden">Weather forecast App</h1>
 
-    <div class="detailed-forecast" v-if="mainCityWeather">
-      <h2 class="detailed-forecast__title title title--sm">Sunny</h2>
-      <img
-          class="detailed-forecast__img"
-          :src="getImage(`weather/${mainCityWeather.currentDayIcon}.svg`)"
-          :alt="mainCityWeather.currentDayIcon"
-          width="172"
-          height="172"
-      >
-      <div class="detailed-forecast__degrees">{{ Math.round(mainCityWeather.current.temp_c) }}</div>
-      <div class="detailed-forecast__date">
-        <span>{{ mainCityWeather.localtimeInfo.weekDay }}, </span>
-        <span>{{ mainCityWeather.localtimeInfo.date }}</span>
-        <span> | {{ mainCityWeather.localtimeInfo.time }}</span>
-      </div>
-
-      <stats-info
-          :weather-info="mainCityWeather"
-          class="detailed-forecast__stats"
-      />
-    </div>
-    <div class="hourly-forecast" v-if="mainCityWeather">
-      <div class="hourly-forecast__header">
-        <div class="hourly-forecast__title">Today</div>
-        <div class="hourly-forecast__title">7-Day Forecasts</div>
-      </div>
-      <swiper
-          class="hourly-forecast__list"
-          :slides-per-view="'auto'"
-          :space-between="10"
-      >
-        <swiper-slide
-            v-for="hourInfo in mainCityWeather.forecast.forecastday[0].hour"
-            class="hourly-forecast__item"
+    <transition name="fade" appear>
+      <div class="detailed-forecast" v-if="mainCityForecast">
+        <h2 class="detailed-forecast__title title title--sm">Sunny</h2>
+        <img
+            class="detailed-forecast__img"
+            :src="getImage(`weather/${mainCityForecast.currentDayIcon}.svg`)"
+            :alt="mainCityForecast.currentDayIcon"
+            width="172"
+            height="172"
         >
-          <div class="hourly-forecast__time">
-            {{ normalizeTime(new Date(hourInfo.time).getHours()) }}
-            :
-            {{ normalizeTime(new Date(hourInfo.time).getMinutes()) }}
-          </div>
-          <div class="hourly-forecast__img">
-            <img
-                :src="getImage(`weather/${getWeatherIconName(hourInfo.condition.code, new Date(hourInfo.time).getHours())}.svg`)"
-                alt="Cloudy"
-                width="40"
-                height="40"
-            >
-          </div>
-          <div class="hourly-forecast__degrees">{{ Math.round(hourInfo.temp_c) }}</div>
-        </swiper-slide>
-      </swiper>
-    </div>
+        <div class="detailed-forecast__degrees">{{ Math.round(mainCityForecast.current.temp_c) }}</div>
+        <div class="detailed-forecast__date">
+          <span>{{ mainCityForecast.localtimeInfo.weekDay }}, </span>
+          <span>{{ mainCityForecast.localtimeInfo.date }}</span>
+          <span> | {{ mainCityForecast.localtimeInfo.time }}</span>
+        </div>
+
+        <stats-info
+            :weather-info="mainCityForecast"
+            class="detailed-forecast__stats"
+        />
+      </div>
+    </transition>
+
+    <transition>
+      <div class="hourly-forecast" v-if="mainCityForecast">
+        <div class="hourly-forecast__header">
+          <div class="hourly-forecast__title">Today</div>
+          <div class="hourly-forecast__title">7-Day Forecasts</div>
+        </div>
+        <swiper
+            class="hourly-forecast__list"
+            :slides-per-view="'auto'"
+            :space-between="10"
+        >
+          <swiper-slide
+              v-for="hourInfo in mainCityForecastCurrentDayHourly.slice(mainCityCurrentTime.getHours() + 1, mainCityForecastCurrentDayHourly.length)"
+              :key="hourInfo.time"
+              class="hourly-forecast__item"
+          >
+            <div class="hourly-forecast__time">
+              {{ normalizeTime(new Date(hourInfo.time).getHours()) }}
+              :
+              {{ normalizeTime(new Date(hourInfo.time).getMinutes()) }}
+            </div>
+            <div class="hourly-forecast__img">
+              <img
+                  :src="getImage(`weather/${getWeatherIconName(hourInfo.condition.code, new Date(hourInfo.time).getHours())}.svg`)"
+                  alt="Cloudy"
+                  width="40"
+                  height="40"
+              >
+            </div>
+            <div class="hourly-forecast__degrees">{{ Math.round(hourInfo.temp_c) }}</div>
+          </swiper-slide>
+          <swiper-slide
+              v-for="hourInfo in mainCityForecastNextDayHourly.slice(0, mainCityCurrentTime.getHours() + 1)"
+              :key="hourInfo.time"
+              class="hourly-forecast__item"
+          >
+            <div class="hourly-forecast__time">
+              {{ normalizeTime(new Date(hourInfo.time).getHours()) }}
+              :
+              {{ normalizeTime(new Date(hourInfo.time).getMinutes()) }}
+            </div>
+            <div class="hourly-forecast__img">
+              <img
+                  :src="getImage(`weather/${getWeatherIconName(hourInfo.condition.code, new Date(hourInfo.time).getHours())}.svg`)"
+                  alt="Cloudy"
+                  width="40"
+                  height="40"
+              >
+            </div>
+            <div class="hourly-forecast__degrees">{{ Math.round(hourInfo.temp_c) }}</div>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </transition>
+
     <div class="other-cities">
       <div class="other-cities__header">
         <div class="other-cities__title">Other Cities</div>
@@ -152,17 +179,29 @@ import StatsInfo from "@/modules/stats/StatsInfo.vue";
 import { getImage } from "@/common/helpers/getImage.js";
 import { MAIN_CITY } from "@/common/constants";
 import { useWeatherStore } from "@/stores/weather.js";
-import { onMounted, ref } from "vue";
+import {computed, onMounted, ref} from "vue";
 import {normalizeTime} from "../common/helpers/normalizeTime.js";
 import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
 
 const weatherStore = useWeatherStore();
 
-const mainCityWeather = ref(null);
+const mainCityForecast = ref(null);
+
+const mainCityForecastCurrentDayHourly = computed(() => {
+  return mainCityForecast?.value?.forecast.forecastday[0].hour;
+});
+
+const mainCityForecastNextDayHourly = computed(() => {
+  return mainCityForecast?.value?.forecast.forecastday[1].hour;
+});
+
+const mainCityCurrentTime = computed(() => {
+  return new Date(mainCityForecast?.value?.location.localtime);
+});
 
 onMounted(async () => {
-  await weatherStore.setCityWeather(MAIN_CITY, 1);
-  mainCityWeather.value = weatherStore.getCityWeather(MAIN_CITY);
+  await weatherStore.setCityWeather(MAIN_CITY, 2);
+  mainCityForecast.value = weatherStore.getCityWeather(MAIN_CITY);
 })
 </script>
 
@@ -175,6 +214,7 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
 
+  min-height: 458px;
   margin-bottom: 40px;
 
   &__title {
@@ -190,7 +230,7 @@ onMounted(async () => {
   }
 
   &__degrees {
-    @include degrees_circle(16px, 3px, -5px, -12px  );
+    @include degrees_circle(16px, 3px, -9px, -16px  );
     @include sb-s80-h80;
 
     margin-bottom: 5px;
