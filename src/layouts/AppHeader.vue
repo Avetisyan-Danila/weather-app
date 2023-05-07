@@ -159,7 +159,6 @@ watch(
 
   &--right {
     right: 0;
-    transform: translateX(-2px);
 
     @media (max-width: $sm) {
       right: 20px;

@@ -19,7 +19,6 @@
                   alt="Sunny"
                   width="70"
                   height="70"
-                  style="transform: translateX(2px)"
               >
             </span>
             <div class="feedback__weather">Sunny</div>

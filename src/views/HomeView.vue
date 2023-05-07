@@ -231,7 +231,6 @@ onMounted(async () => {
 
   &__img {
     margin-bottom: 28px;
-    transform: translateX(2px);
   }
 
   &__degrees {
