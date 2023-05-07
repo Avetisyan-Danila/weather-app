@@ -26,7 +26,7 @@
       </div>
     </transition>
 
-    <transition>
+    <transition name="fade" appear>
       <div class="hourly-forecast" v-if="mainCityForecast">
         <div class="hourly-forecast__header">
           <div class="hourly-forecast__title">24h forecast</div>
