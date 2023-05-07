@@ -1,6 +1,7 @@
 <template>
   <button
     class="app-button"
+    :class="{'app-button--bordered': bordered}"
     :type="type"
   >
     <slot />
@@ -11,7 +12,11 @@
 defineProps({
   type: {
     type: String,
-    default: 'text'
+    default: 'button'
+  },
+  bordered: {
+    type: Boolean,
+    default: false,
   }
 })
 </script>
@@ -30,5 +35,14 @@ defineProps({
   border: none;
   color: $white;
   cursor: pointer;
+
+  &--bordered {
+    background: none;
+    height: auto;
+
+    border: 2px solid $white;
+    border-radius: 6px;
+    padding: 5px 15px;
+  }
 }
 </style>
