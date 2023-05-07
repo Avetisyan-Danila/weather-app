@@ -62,7 +62,7 @@
 
     <transition name="fade" appear>
       <div
-          v-if="route.name === 'success' || route.meta.title === '7 Days'"
+          v-if="hasHistory && route.name === 'success' || hasHistory && route.meta.title === '7 Days'"
           class="header__button header__button--right"
           @click="router.go(-1)"
       >
