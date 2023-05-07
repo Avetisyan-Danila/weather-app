@@ -4,7 +4,7 @@
 
     <transition name="fade" appear>
       <div class="detailed-forecast" v-if="mainCityForecast">
-        <h2 class="detailed-forecast__title title title--sm">Sunny</h2>
+        <h2 class="detailed-forecast__title title title--sm">{{ capitalizeFirstLetter(weatherConditions[mainCityForecast.current.condition.code]) }}</h2>
         <img
             class="detailed-forecast__img"
             :src="getImage(`weather/${mainCityForecast.currentDayIcon}.svg`)"
@@ -182,6 +182,8 @@ import { useWeatherStore } from "@/stores/weather.js";
 import {computed, onMounted, ref} from "vue";
 import {normalizeTime} from "../common/helpers/normalizeTime.js";
 import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
+import weatherConditions from "../common/enums/weatherConditions.js";
+import {capitalizeFirstLetter} from "../common/helpers/capitalizeFirstLetter.js";
 
 const weatherStore = useWeatherStore();
 
