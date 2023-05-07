@@ -30,7 +30,9 @@
       <div class="hourly-forecast" v-if="mainCityForecast">
         <div class="hourly-forecast__header">
           <div class="hourly-forecast__title">Today</div>
-          <div class="hourly-forecast__title">7-Day Forecasts</div>
+          <router-link :to="{ name: 'detailed', params: { city: MAIN_CITY } }">
+            <app-button class="hourly-forecast__button" bordered>7-Day Forecasts</app-button>
+          </router-link>
         </div>
         <swiper
             class="hourly-forecast__list"
@@ -184,6 +186,7 @@ import {normalizeTime} from "../common/helpers/normalizeTime.js";
 import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
 import weatherConditions from "../common/enums/weatherConditions.js";
 import {capitalizeFirstLetter} from "../common/helpers/capitalizeFirstLetter.js";
+import AppButton from "@/common/components/AppButton.vue";
 
 const weatherStore = useWeatherStore();
 
@@ -252,11 +255,16 @@ onMounted(async () => {
 
   &__header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   &__title {
+    @include sb-s12-h18;
+  }
+
+  &__button.app-button {
     @include sb-s12-h18;
   }
 
