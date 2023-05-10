@@ -15,7 +15,7 @@ export const useWeatherStore = defineStore("weather", {
         async setCityWeather(cityName, days) {
             // Если погода для города уже есть, то делать повторные запрос, если данные получены более минуты назад
             if (this.getCityWeather(cityName)) {
-                if (!getMinutesAgo(this.getCityWeather(cityName).dateReceipt, ONE_MINUTE)) {
+                if (!getMinutesAgo(this.getCityWeather(cityName).dateReceipt, ONE_MINUTE) && this.getCityWeather(cityName).dayForecast === days) {
                     return
                 } else {
                     this.citiesWeather = this.citiesWeather.filter(city => city.location.name !== cityName)
@@ -23,7 +23,7 @@ export const useWeatherStore = defineStore("weather", {
             }
 
             const cityWeather = await fetchCityWeather(cityName, days);
-            this.citiesWeather.push(normalizeWeatherInfo(cityWeather));
+            this.citiesWeather.push(normalizeWeatherInfo(cityWeather, days));
         },
     }
 })

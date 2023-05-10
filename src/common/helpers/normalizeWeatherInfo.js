@@ -2,7 +2,7 @@ import { monthNames, weekDays } from "@/common/constants/index.js";
 import { normalizeTime } from "@/common/helpers/normalizeTime.js";
 import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
 
-export const normalizeWeatherInfo = (weatherInfo) => {
+export const normalizeWeatherInfo = (weatherInfo, days) => {
     const localtimeDate = new Date(weatherInfo.location.localtime);
     const localtimeObj = {
         weekDay: weekDays[localtimeDate.getDay()],
@@ -17,5 +17,6 @@ export const normalizeWeatherInfo = (weatherInfo) => {
         dateReceipt: new Date().toISOString(),
         currentDayIcon: currentDayIcon,
         localtimeInfo: localtimeObj,
+        daysForecast: days,
     };
 };
