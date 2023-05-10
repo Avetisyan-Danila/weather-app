@@ -210,7 +210,7 @@ onMounted(async () => {
   }
 
   &__stats {
-    max-width: 295px;
+    max-width: 320px;
   }
 }
 
