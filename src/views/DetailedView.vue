@@ -1,5 +1,5 @@
 <template>
-  <div class="detailed">
+  <div class="detailed" v-if="cityForecast">
     <div class="detailed__add">
       <div class="detailed__add-button">
         <img
@@ -11,32 +11,40 @@
       </div>
     </div>
 
+    <h2 class="detailed__title">{{ route.params.city }}</h2>
+
     <div class="detailed__info">
       <div class="detailed__info-top">
         <img
             class="detailed__img"
-            :src="getImage('weather/cloudy.svg')"
+            :src="getImage(`weather/${cityForecast.currentDayIcon}.svg`)"
             alt="Cloudy"
             width="169"
             height="132"
         >
         <div class="detailed__degrees-block">
-          <div class="detailed__degrees-afternoon">23</div>
-          <div class="detailed__degrees-night">17</div>
+          <div class="detailed__degrees-afternoon">{{ Math.round(cityForecast.forecast.forecastday[0].day.maxtemp_c) }}</div>
+          <div class="detailed__degrees-night">{{ Math.round(cityForecast.forecast.forecastday[0].day.mintemp_c) }}</div>
         </div>
       </div>
 
-      <stats-info class="detailed__stats" />
+      <stats-info
+          :weather-info="cityForecast"
+          class="detailed__stats"
+      />
     </div>
 
     <div class="weekly-weather">
       <ul class="weekly-weather__list">
-        <li class="weekly-weather__item">
-          <div class="weekly-weather__day">Monday</div>
-          <div class="weekly-weather__weather">
+        <li
+            v-for="forecast in cityWeekForecast"
+            class="weekly-weather__item"
+        >
+          <div class="weekly-weather__day">{{ weekDays[new Date(forecast.date).getDay()] }}</div>
+          <div class="weekly-weather__forecast">
             <img
                 class="weekly-weather__img"
-                :src="getImage('weather/cloudy.svg')"
+                :src="getImage(`weather/${getWeatherIconName(forecast.day.condition.code, 12)}.svg`)"
                 alt="Cloudy"
                 width="50"
                 height="50"
@@ -44,93 +52,8 @@
             <div class="weekly-weather__weather-name">Cloudy</div>
           </div>
           <div class="weekly-weather__degrees-block">
-            <div class="weekly-weather__degrees-item"><span>+</span>26</div>
-            <div class="weekly-weather__degrees-item"><span>+</span>11</div>
-          </div>
-        </li>
-        <li class="weekly-weather__item">
-          <div class="weekly-weather__day">Monday</div>
-          <div class="weekly-weather__weather">
-            <img
-                class="weekly-weather__img"
-                :src="getImage('weather/cloudy.svg')"
-                alt="Cloudy"
-                width="50"
-                height="50"
-            >
-            <div class="weekly-weather__weather-name">Cloudy</div>
-          </div>
-          <div class="weekly-weather__degrees-block">
-            <div class="weekly-weather__degrees-item"><span>+</span>26</div>
-            <div class="weekly-weather__degrees-item"><span>+</span>11</div>
-          </div>
-        </li>
-        <li class="weekly-weather__item">
-          <div class="weekly-weather__day">Monday</div>
-          <div class="weekly-weather__weather">
-            <img
-                class="weekly-weather__img"
-                :src="getImage('weather/cloudy.svg')"
-                alt="Cloudy"
-                width="50"
-                height="50"
-            >
-            <div class="weekly-weather__weather-name">Cloudy</div>
-          </div>
-          <div class="weekly-weather__degrees-block">
-            <div class="weekly-weather__degrees-item"><span>+</span>26</div>
-            <div class="weekly-weather__degrees-item"><span>+</span>11</div>
-          </div>
-        </li>
-        <li class="weekly-weather__item">
-          <div class="weekly-weather__day">Monday</div>
-          <div class="weekly-weather__weather">
-            <img
-                class="weekly-weather__img"
-                :src="getImage('weather/cloudy.svg')"
-                alt="Cloudy"
-                width="50"
-                height="50"
-            >
-            <div class="weekly-weather__weather-name">Cloudy</div>
-          </div>
-          <div class="weekly-weather__degrees-block">
-            <div class="weekly-weather__degrees-item"><span>+</span>26</div>
-            <div class="weekly-weather__degrees-item"><span>+</span>11</div>
-          </div>
-        </li>
-        <li class="weekly-weather__item">
-          <div class="weekly-weather__day">Monday</div>
-          <div class="weekly-weather__weather">
-            <img
-                class="weekly-weather__img"
-                :src="getImage('weather/cloudy.svg')"
-                alt="Cloudy"
-                width="50"
-                height="50"
-            >
-            <div class="weekly-weather__weather-name">Cloudy</div>
-          </div>
-          <div class="weekly-weather__degrees-block">
-            <div class="weekly-weather__degrees-item"><span>+</span>26</div>
-            <div class="weekly-weather__degrees-item"><span>+</span>11</div>
-          </div>
-        </li>
-        <li class="weekly-weather__item">
-          <div class="weekly-weather__day">Monday</div>
-          <div class="weekly-weather__weather">
-            <img
-                class="weekly-weather__img"
-                :src="getImage('weather/cloudy.svg')"
-                alt="Cloudy"
-                width="50"
-                height="50"
-            >
-            <div class="weekly-weather__weather-name">Cloudy</div>
-          </div>
-          <div class="weekly-weather__degrees-block">
-            <div class="weekly-weather__degrees-item"><span>+</span>26</div>
-            <div class="weekly-weather__degrees-item"><span>+</span>11</div>
+            <div class="weekly-weather__degrees-item">{{ Math.round(forecast.day.maxtemp_c) }}</div>
+            <div class="weekly-weather__degrees-item">{{ Math.round(forecast.day.mintemp_c) }}</div>
           </div>
         </li>
       </ul>
@@ -141,6 +64,27 @@
 <script setup>
 import StatsInfo from "@/modules/stats/StatsInfo.vue";
 import { getImage } from "@/common/helpers/getImage.js";
+import { useRoute } from "vue-router";
+import { computed, onMounted, ref } from "vue";
+import { useWeatherStore } from "@/stores/weather.js";
+import { weekDays } from "@/common/constants/index.js";
+import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
+
+const route = useRoute();
+
+const weatherStore = useWeatherStore();
+
+const cityForecast = ref(null);
+
+const cityWeekForecast = computed(() => {
+  return cityForecast?.value?.forecast.forecastday;
+})
+
+onMounted(async () => {
+  // Получение информации по главному городу
+  await weatherStore.setCityWeather(route.params.city, 7);
+  cityForecast.value = weatherStore.getCityWeather(route.params.city);
+})
 </script>
 
 <style lang="scss" scoped>
@@ -159,7 +103,6 @@ import { getImage } from "@/common/helpers/getImage.js";
     align-items: center;
     gap: 5px;
 
-    margin-bottom: 20px;
     padding: 5px 8px;
 
     border: 2px solid $white;
@@ -169,6 +112,11 @@ import { getImage } from "@/common/helpers/getImage.js";
       background-color: $white;
       color: $black;
     }
+  }
+
+  &__title {
+    @include sb-s18-h18;
+    text-align: center;
   }
 
   &__info {
@@ -202,7 +150,7 @@ import { getImage } from "@/common/helpers/getImage.js";
 
     display: flex;
     align-items: flex-end;
-    gap: 30px;
+    gap: 25px;
 
     &:after {
       content: '';
@@ -219,14 +167,14 @@ import { getImage } from "@/common/helpers/getImage.js";
 
   &__degrees-afternoon {
     @include sb-s55-h80;
-    @include degrees_circle(10px, 2px, 6px, -10px);
+    @include degrees_circle(8px, 2px, 6px, -10px);
 
     margin-bottom: 26px;
   }
 
   &__degrees-night {
     @include sb-s25-h80;
-    @include degrees_circle(8px, 1px, 20px, -12px);
+    @include degrees_circle(8px, 2px, 20px, -12px);
   }
 
   &__stats {
@@ -263,11 +211,11 @@ import { getImage } from "@/common/helpers/getImage.js";
     flex: 0 0 100px;
   }
 
-  &__weather {
+  &__forecast {
     display: flex;
     align-items: center;
 
-    gap: 8px;
+    gap: 10px;
   }
 
   &__weather-name {
@@ -281,6 +229,7 @@ import { getImage } from "@/common/helpers/getImage.js";
     align-items: center;
     justify-content: flex-end;
     gap: 20px;
+    margin-right: 10px;
 
     flex: 0 0 100px;
   }
