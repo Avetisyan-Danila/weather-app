@@ -83,7 +83,7 @@
       </div>
     </transition>
 
-    <div class="other-cities">
+    <div class="other-cities" v-if="otherCitiesForecast">
       <div class="other-cities__header">
         <div class="other-cities__title">Other Cities</div>
         <div class="other-cities__add-button">
@@ -100,72 +100,24 @@
           :slides-per-view="'auto'"
           :space-between="10"
       >
-        <swiper-slide class="other-cities__item">
-          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: 'test' } }">
+        <swiper-slide
+            v-for="city in otherCitiesForecast"
+            class="other-cities__item"
+        >
+          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: city.location.name } }">
             <div class="other-cities__img">
               <img
-                  :src="getImage('weather/cloudy.svg')"
+                  :src="getImage(`weather/${city.currentDayIcon}.svg`)"
                   alt="Cloudy"
                   width="40"
                   height="40"
               >
             </div>
             <div class="other-cities__info">
-              <div class="other-cities__name">Delhi</div>
-              <div class="other-cities__weather">Cloudy</div>
+              <div class="other-cities__name">{{ city.location.name }}</div>
+              <div class="other-cities__weather">{{ capitalizeFirstLetter(weatherConditions[city.current.condition.code]) }}</div>
             </div>
-            <div class="other-cities__degrees">9</div>
-          </router-link>
-        </swiper-slide>
-        <swiper-slide class="other-cities__item">
-          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: 'test' } }">
-            <div class="other-cities__img">
-              <img
-                  :src="getImage('weather/sunny.svg')"
-                  alt="Sunny"
-                  width="40"
-                  height="40"
-              >
-            </div>
-            <div class="other-cities__info">
-              <div class="other-cities__name">Kolkata</div>
-              <div class="other-cities__weather">Sunny</div>
-            </div>
-            <div class="other-cities__degrees">20</div>
-          </router-link>
-        </swiper-slide>
-        <swiper-slide class="other-cities__item">
-          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: 'test' } }">
-            <div class="other-cities__img">
-              <img
-                  :src="getImage('weather/thunder.svg')"
-                  alt="Thunder"
-                  width="40"
-                  height="40"
-              >
-            </div>
-            <div class="other-cities__info">
-              <div class="other-cities__name">Chennai</div>
-              <div class="other-cities__weather">Thunder</div>
-            </div>
-            <div class="other-cities__degrees">12</div>
-          </router-link>
-        </swiper-slide>
-        <swiper-slide class="other-cities__item">
-          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: 'test' } }">
-            <div class="other-cities__img">
-              <img
-                  :src="getImage('weather/sunny.svg')"
-                  alt="Sunny"
-                  width="40"
-                  height="40"
-              >
-            </div>
-            <div class="other-cities__info">
-              <div class="other-cities__name">Manali</div>
-              <div class="other-cities__weather">Sunny</div>
-            </div>
-            <div class="other-cities__degrees">33</div>
+            <div class="other-cities__degrees">{{ Math.round(city.current.temp_c) }}</div>
           </router-link>
         </swiper-slide>
       </swiper>
@@ -311,30 +263,35 @@ onMounted(async () => {
   }
 
   &__item {
-    width: 39%;
+    width: 43%;
   }
 
   &__link {
     @include purple-gradient;
+    box-sizing: border-box;
 
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
 
-    padding: 5px 10px;
-    min-height: 50px;
+    padding: 10px 10px;
+    height: 70px;
+  }
+
+  &__img {
+    flex: 1 0 auto;
   }
 
   &__name {
-    @include sb-s14-h14;
+    @include sb-s12-h14;
 
     color: $white;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
   }
 
   &__weather {
-    @include sb-s10-h14;
+    @include r-s10-h12;
 
     color: $white;
   }
