@@ -9,7 +9,7 @@
           height="24"
       >
       <span class="stats__value">{{ weatherInfo.forecast.forecastday[0].day.daily_chance_of_rain }}%</span>
-      <span class="stats__name">Precipitation</span>
+      <span class="stats__name">Chance of rain</span>
     </li>
     <li class="stats__point">
       <img
@@ -57,7 +57,8 @@ defineProps({
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 30px;
 
   width: 100%;
   box-sizing: border-box;
