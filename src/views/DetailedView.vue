@@ -24,6 +24,7 @@
         >
         <div class="detailed__degrees-block">
           <div class="detailed__degrees-afternoon">{{ Math.round(cityForecast.forecast.forecastday[0].day.maxtemp_c) }}</div>
+          <div class="detailed__degrees-separator"></div>
           <div class="detailed__degrees-night">{{ Math.round(cityForecast.forecast.forecastday[0].day.mintemp_c) }}</div>
         </div>
       </div>
@@ -150,31 +151,29 @@ onMounted(async () => {
 
     display: flex;
     align-items: flex-end;
-    gap: 25px;
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 63%;
-      transform: rotate(19deg) translate(-50%, -50%);
-
-      height: 35px;
-      width: 3px;
-      background-color: $white;
-    }
   }
 
   &__degrees-afternoon {
-    @include sb-s55-h80;
-    @include degrees_circle(8px, 2px, 6px, -10px);
+    @include sb-s55-h55;
+    @include degrees_circle(8px, 2px, -4px, -10px);
 
-    margin-bottom: 26px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+  &__degrees-separator {
+    height: 35px;
+    width: 3px;
+    background-color: $white;
+    transform: rotate(19deg);
   }
 
   &__degrees-night {
-    @include sb-s25-h80;
-    @include degrees_circle(8px, 2px, 20px, -12px);
+    @include sb-s25-h25;
+    @include degrees_circle(8px, 2px, -4px, -12px);
+
+    margin-left: 15px;
+    transform: translateY(5px);
   }
 
   &__stats {

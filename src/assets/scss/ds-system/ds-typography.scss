@@ -73,12 +73,12 @@
   @include typography_template(20px, 20px, 600);
 }
 
-@mixin sb-s25-h80 {
-  @include typography_template(25px, 80px, 600);
+@mixin sb-s25-h25 {
+  @include typography_template(25px, 25px, 600);
 }
 
-@mixin sb-s55-h80 {
-  @include typography_template(55px, 80px, 600);
+@mixin sb-s55-h55 {
+  @include typography_template(55px, 55px, 600);
 }
 
 @mixin sb-s80-h80 {
