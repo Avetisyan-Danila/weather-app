@@ -1,3 +1,4 @@
+// https://www.weatherapi.com/docs/weather_conditions.json
 export default {
     1000: 'sunny',
     1003: 'partly-cloudy',
