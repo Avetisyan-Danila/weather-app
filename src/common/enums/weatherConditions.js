@@ -5,7 +5,7 @@ export default {
     1006: 'cloudy',
     1009: 'cloudy',
     1030: 'fog',
-    1063: 'freezing-drizzle',
+    1063: 'partly-cloudy',
     1066: 'snow',
     1069: 'snow',
     1072: 'freezing-drizzle',

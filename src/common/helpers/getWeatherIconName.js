@@ -9,5 +9,9 @@ export const getWeatherIconName = (code, time) => {
         return time >= 6 && time < 22 ? 'partly-cloudy-day' : 'partly-cloudy-night';
     }
 
+    if (code === 1063) {
+        return time >= 6 && time < 22 ? 'partly-cloudy-day' : 'partly-cloudy-night';
+    }
+
     return weatherConditions[code];
 }
