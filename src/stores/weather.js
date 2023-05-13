@@ -9,13 +9,13 @@ export const useWeatherStore = defineStore("weather", {
         citiesWeather: [],
     }),
     getters: {
-        getCityWeather: state => cityName => state.citiesWeather.find(city => city.location.name === cityName),
+        getCityWeather: state => (cityName, days) => state.citiesWeather.find(city => city.location.name === cityName && city.daysForecast === days),
     },
     actions: {
         async setCityWeather(cityName, days) {
             // Если погода для города уже есть, то делать повторные запрос, если данные получены более минуты назад или дни прогноза не совпадают
-            if (this.getCityWeather(cityName)) {
-                if (!getMinutesAgo(this.getCityWeather(cityName).dateReceipt, ONE_MINUTE) && this.getCityWeather(cityName).daysForecast === days) {
+            if (this.getCityWeather(cityName, days)) {
+                if (!getMinutesAgo(this.getCityWeather(cityName, days).dateReceipt, ONE_MINUTE) && this.getCityWeather(cityName, days).daysForecast === days) {
                     return
                 } else {
                     this.citiesWeather = this.citiesWeather.filter(city => city.location.name !== cityName)

@@ -158,12 +158,12 @@ const otherCitiesForecast = ref([]);
 onMounted(async () => {
   // Получение информации по главному городу
   await weatherStore.setCityWeather(MAIN_CITY, 2);
-  mainCityForecast.value = weatherStore.getCityWeather(MAIN_CITY);
+  mainCityForecast.value = weatherStore.getCityWeather(MAIN_CITY, 2);
 
   // Получение информации по Other cities
   for (const value of otherCitiesNames) {
     await weatherStore.setCityWeather(value.name, 1)
-    otherCitiesForecast.value.push(weatherStore.getCityWeather(value.name))
+    otherCitiesForecast.value.push(weatherStore.getCityWeather(value.name, 1))
   }
 })
 </script>

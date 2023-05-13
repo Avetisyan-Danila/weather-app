@@ -85,7 +85,7 @@ const cityWeekForecast = computed(() => {
 onMounted(async () => {
   // Получение информации по главному городу
   await weatherStore.setCityWeather(route.params.city, 7);
-  cityForecast.value = weatherStore.getCityWeather(route.params.city);
+  cityForecast.value = weatherStore.getCityWeather(route.params.city, 7);
 })
 </script>
 

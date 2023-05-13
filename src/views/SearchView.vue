@@ -101,7 +101,7 @@ onMounted(async () => {
 
     for (const city of recentSearchesStore.recentSearches) {
       await weatherStore.setCityWeather(city, 1);
-      searchPageForecasts.value.push(weatherStore.getCityWeather(city));
+      searchPageForecasts.value.push(weatherStore.getCityWeather(city, 1));
     }
   } else {
     localStorage.setItem('recentSearches', JSON.stringify([]));
