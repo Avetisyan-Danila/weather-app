@@ -13,9 +13,9 @@ export const useWeatherStore = defineStore("weather", {
     },
     actions: {
         async setCityWeather(cityName, days) {
-            // Если погода для города уже есть, то делать повторные запрос, если данные получены более минуты назад
+            // Если погода для города уже есть, то делать повторные запрос, если данные получены более минуты назад или дни прогноза не совпадают
             if (this.getCityWeather(cityName)) {
-                if (!getMinutesAgo(this.getCityWeather(cityName).dateReceipt, ONE_MINUTE) && this.getCityWeather(cityName).dayForecast === days) {
+                if (!getMinutesAgo(this.getCityWeather(cityName).dateReceipt, ONE_MINUTE) && this.getCityWeather(cityName).daysForecast === days) {
                     return
                 } else {
                     this.citiesWeather = this.citiesWeather.filter(city => city.location.name !== cityName)
