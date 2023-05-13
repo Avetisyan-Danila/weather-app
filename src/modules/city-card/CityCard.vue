@@ -2,11 +2,11 @@
   <router-link class="city-card" :to="to">
     <div class="city-card__info">
       <div class="city-card__title">{{ title }}</div>
-      <div class="city-card__weather">{{ weather }}</div>
+      <div class="city-card__weather">{{ weatherName }}</div>
     </div>
     <img
         class="city-card__img"
-        :src="getImage(`weather/${weather.toLowerCase()}.svg`)"
+        :src="getImage(`weather/${weatherIcon}.svg`)"
         alt="Cloudy"
         width="135"
         height="106"
@@ -26,7 +26,11 @@ defineProps({
     type: String,
     default: '',
   },
-  weather: {
+  weatherIcon: {
+    type: String,
+    default: '',
+  },
+  weatherName: {
     type: String,
     default: '',
   },
