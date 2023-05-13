@@ -39,6 +39,7 @@
       <ul class="weekly-weather__list">
         <li
             v-for="forecast in cityWeekForecast"
+            :key="forecast.date"
             class="weekly-weather__item"
         >
           <div class="weekly-weather__day">{{ weekDays[new Date(forecast.date).getDay()] }}</div>
