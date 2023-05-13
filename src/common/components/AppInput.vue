@@ -10,7 +10,8 @@
         @focus="onFocus"
     />
   </label>
-  <div v-show="!isValid" class="error-message">{{ errorMessage }}</div>
+  <div v-show="!isValid" class="error-message">{{ emptyErrorMessage }}</div>
+  <div v-show="searchErrorMessage" class="error-message">{{ searchErrorMessage }}</div>
 </template>
 
 <script setup>
@@ -35,7 +36,11 @@ defineProps({
     type: Boolean,
     default: true,
   },
-  errorMessage: {
+  emptyErrorMessage: {
+    type: String,
+    default: '',
+  },
+  searchErrorMessage: {
     type: String,
     default: '',
   }
@@ -103,7 +108,6 @@ const onFocus = () => {
 }
 
 .error-message {
-  position: absolute;
   color: $red;
   margin-top: 10px;
   padding-left: 10px;
