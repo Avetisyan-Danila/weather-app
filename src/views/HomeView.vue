@@ -83,17 +83,9 @@
       </div>
     </transition>
 
-    <div class="other-cities" v-if="otherCitiesForecast">
+    <div class="other-cities" v-if="otherCitiesForecast.length">
       <div class="other-cities__header">
         <div class="other-cities__title">Other Cities</div>
-        <div class="other-cities__add-button">
-          <img
-              :src="getImage('icons/plus.svg')"
-              alt="Add new city to others"
-              width="14"
-              height="14"
-          >
-        </div>
       </div>
       <swiper
           class="other-cities__list"
@@ -102,6 +94,7 @@
       >
         <swiper-slide
             v-for="city in otherCitiesForecast"
+            :key="city.location.name"
             class="other-cities__item"
         >
           <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: city.location.name } }">
