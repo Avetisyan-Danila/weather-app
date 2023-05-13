@@ -14,7 +14,7 @@
   opacity: 1;
 }
 
-//fade-without-jump
+// fade-without-jump
 .fade-without-jump-enter-active,
 .fade-without-jump-leave-active {
   transition: all 0.15s ease-in-out;
@@ -34,4 +34,15 @@
 .fade-without-jump-leave-from {
   opacity: 1;
   transform: translateY(0);
+}
+
+// list
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
