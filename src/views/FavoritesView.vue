@@ -7,7 +7,7 @@
           placeholder="Name of the city"
           v-model="searchValue"
           :is-valid="isValid"
-          :error-message="'Enter the name of the city'"
+          :empty-error-message="'Enter the name of the city'"
       />
     </form>
 
