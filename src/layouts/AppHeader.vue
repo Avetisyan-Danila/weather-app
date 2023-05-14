@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <transition-group name="fade-without-jump" mode="out-in">
+    <transition-group name="fade" mode="out-in">
       <div
           v-if="route.name === 'home'"
           class="header__button header__button--left"
@@ -39,7 +39,7 @@
     </transition-group>
 
     <h2 class="header__title title title--md">
-      <transition name="fade-without-jump" mode="out-in">
+      <transition name="fade" mode="out-in">
         <div :key="title">
           {{ title ?? MAIN_CITY }}
         </div>
