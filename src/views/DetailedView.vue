@@ -1,9 +1,13 @@
 <template>
   <div class="detailed" v-if="cityForecast">
     <div class="detailed__add">
-      <div class="detailed__add-button">
+      <div
+          @click="onAddButtonClick"
+          class="detailed__add-button"
+          :class="{'detailed__add-button--active': isFavoriteCity}"
+      >
         <img
-            :src="getImage('icons/heart.svg')"
+            :src="isFavoriteCity ? getImage('icons/heart-red.svg') : getImage('icons/heart.svg')"
             alt="Bell"
             width="20"
             height="20"
@@ -11,7 +15,7 @@
       </div>
     </div>
 
-    <h2 class="detailed__title">{{ route.params.city }}</h2>
+    <h2 class="detailed__title">{{ detailedCity }}</h2>
 
     <div class="detailed__info">
       <div class="detailed__info-top">
@@ -71,21 +75,34 @@ import { computed, onMounted, ref } from "vue";
 import { useWeatherStore } from "@/stores/weather.js";
 import { weekDays } from "@/common/constants/index.js";
 import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
+import {useFavoritesStore} from "@/stores/favorites.js";
 
 const route = useRoute();
 
 const weatherStore = useWeatherStore();
+const favoritesStore = useFavoritesStore();
 
 const cityForecast = ref(null);
+const detailedCity = route.params.city;
 
 const cityWeekForecast = computed(() => {
   return cityForecast?.value?.forecast.forecastday;
 })
 
+const isFavoriteCity = computed(() => favoritesStore.getFavoriteCity(detailedCity));
+
+const onAddButtonClick = () => {
+  if (favoritesStore.getFavoriteCity(detailedCity)) {
+    favoritesStore.removeFavoriteCity(detailedCity)
+  } else {
+    favoritesStore.setFavoriteCity(detailedCity)
+  }
+}
+
 onMounted(async () => {
   // Получение информации по главному городу
-  await weatherStore.setCityWeather(route.params.city, 7);
-  cityForecast.value = weatherStore.getCityWeather(route.params.city, 7);
+  await weatherStore.setCityWeather(detailedCity, 7);
+  cityForecast.value = weatherStore.getCityWeather(detailedCity, 7);
 })
 </script>
 
@@ -107,8 +124,11 @@ onMounted(async () => {
 
     padding: 5px 8px;
 
+    cursor: pointer;
     border: 2px solid $white;
     border-radius: 6px;
+
+    transition: 0.3s;
 
     &--active {
       background-color: $white;
