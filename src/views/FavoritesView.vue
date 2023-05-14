@@ -8,6 +8,7 @@
           v-model="searchValue"
           :is-valid="isValid"
           :empty-error-message="'Enter the name of the city'"
+          :search-error-message="searchError"
       />
     </form>
 
@@ -16,21 +17,8 @@
         <city-card
             :to="{ name: 'detailed', params: { city: 'test' } }"
             title="Surat"
-            weather="Sunny"
-        />
-      </li>
-      <li class="favorites__item">
-        <city-card
-            :to="{ name: 'detailed', params: { city: 'test' } }"
-            title="Mumbai"
-            weather="Rain"
-        />
-      </li>
-      <li class="favorites__item">
-        <city-card
-            :to="{ name: 'detailed', params: { city: 'test' } }"
-            title="Chennai"
-            weather="Thunder"
+            weatherIcon="sunny"
+            weatherName="Sunny"
         />
       </li>
     </ul>
@@ -41,21 +29,37 @@
 import AppInput from "@/common/components/AppInput.vue";
 import CityCard from "@/modules/city-card/CityCard.vue";
 import { ref, watch } from "vue";
+import {useWeatherStore} from "@/stores/weather.js";
+import {useRecentSearchesStore} from "@/stores/recentSearches.js";
+import {useFavoritesStore} from "@/stores/favorites.js";
+import {useRouter} from "vue-router";
 
 const isValid = ref(true);
 const searchValue = ref('');
+const searchError = ref('');
 
 watch(searchValue, () => {
   isValid.value = true;
 })
 
-const onSubmit = () => {
+const router = useRouter();
+const weatherStore = useWeatherStore();
+
+const onSubmit = async () => {
   if (!searchValue.value) {
     isValid.value = false;
+    searchError.value = '';
     return;
   }
 
-  console.log('Success')
+  try {
+    await weatherStore.setCityWeather(searchValue.value, 7);
+    searchError.value = '';
+
+    await router.push({ name: 'detailed', params: {city: searchValue.value }});
+  } catch (e) {
+    searchError.value = 'Couldn`t find the city';
+  }
 }
 </script>
 
