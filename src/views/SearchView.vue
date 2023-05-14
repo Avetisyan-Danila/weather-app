@@ -57,7 +57,7 @@ import { getImage } from "@/common/helpers/getImage.js";
 import { onMounted, ref, watch } from "vue";
 import { useWeatherStore } from "@/stores/weather.js";
 import { capitalizeFirstLetter } from "@/common/helpers/capitalizeFirstLetter.js";
-import { useRecentSearches } from "@/stores/recentSearches.js";
+import { useRecentSearchesStore } from "@/stores/recentSearches.js";
 import { useRouter } from "vue-router";
 
 const isValid = ref(true);
@@ -71,7 +71,7 @@ watch(searchValue, () => {
 })
 
 const weatherStore = useWeatherStore();
-const recentSearchesStore = useRecentSearches();
+const recentSearchesStore = useRecentSearchesStore();
 
 const searchPageForecasts = ref([]);
 const onSubmit = async () => {

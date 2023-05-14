@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useRecentSearches = defineStore('recentSearches', {
+export const useRecentSearchesStore = defineStore('recentSearches', {
     state: () => ({
         recentSearches: [],
     }),
