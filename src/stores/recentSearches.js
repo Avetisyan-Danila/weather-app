@@ -8,6 +8,14 @@ export const useRecentSearchesStore = defineStore('recentSearches', {
         getRecentSearch: state => cityName => state.recentSearches.find(city => city === cityName),
     },
     actions: {
+        initRecentStore() {
+            // Если существуют записи в localStorage, то записать их в store
+            if (localStorage.getItem('recentSearches')) {
+                this.recentSearches = JSON.parse(localStorage.getItem('recentSearches'));
+            } else {
+                localStorage.setItem('recentSearches', JSON.stringify([]));
+            }
+        },
         setLocalStorage() {
             localStorage.setItem('recentSearches', JSON.stringify(this.recentSearches))
         },

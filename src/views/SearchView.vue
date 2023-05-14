@@ -94,16 +94,9 @@ const onSubmit = async () => {
 }
 
 onMounted(async () => {
-  // Если существуют записи в localStorage, то получить погоду для городов
-  if (localStorage.getItem('recentSearches')) {
-    recentSearchesStore.recentSearches = JSON.parse(localStorage.getItem('recentSearches'));
-
-    for (const city of recentSearchesStore.recentSearches) {
-      await weatherStore.setCityWeather(city, 1);
-      searchPageForecasts.value.push(weatherStore.getCityWeather(city, 1));
-    }
-  } else {
-    localStorage.setItem('recentSearches', JSON.stringify([]));
+  for (const city of recentSearchesStore.recentSearches) {
+    await weatherStore.setCityWeather(city, 1);
+    searchPageForecasts.value.push(weatherStore.getCityWeather(city, 1));
   }
 })
 </script>
