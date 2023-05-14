@@ -39,7 +39,7 @@
     </transition-group>
 
     <h2 class="header__title title title--md">
-      <transition name="fade" mode="out-in">
+      <transition name="fade-title" mode="out-in">
         <div :key="title">
           {{ title ?? MAIN_CITY }}
         </div>
