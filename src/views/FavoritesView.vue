@@ -12,14 +12,22 @@
       />
     </form>
 
-    <ul class="favorites__list">
-      <li class="favorites__item">
-        <city-card
-            :to="{ name: 'detailed', params: { city: 'test' } }"
-            title="Surat"
-            weatherIcon="sunny"
-            weatherName="Sunny"
-        />
+    <ul
+        v-if="favoritesPageForecasts.length"
+        class="favorites__list"
+    >
+      <li
+          v-for="forecast in favoritesPageForecasts"
+          class="favorites__item"
+      >
+        <transition name="list" appear>
+          <city-card
+              :to="{ name: 'detailed', params: { city: forecast.location.name } }"
+              :title="forecast.location.name"
+              :weatherIcon="forecast.currentDayIcon"
+              :weatherName="capitalizeFirstLetter(weatherConditions[forecast.current.condition.code])"
+          />
+        </transition>
       </li>
     </ul>
   </div>
@@ -28,11 +36,13 @@
 <script setup>
 import AppInput from "@/common/components/AppInput.vue";
 import CityCard from "@/modules/city-card/CityCard.vue";
-import { ref, watch } from "vue";
+import {onMounted, ref, watch} from "vue";
 import {useWeatherStore} from "@/stores/weather.js";
 import {useRecentSearchesStore} from "@/stores/recentSearches.js";
 import {useFavoritesStore} from "@/stores/favorites.js";
 import {useRouter} from "vue-router";
+import {capitalizeFirstLetter} from "@/common/helpers/capitalizeFirstLetter.js";
+import weatherConditions from "@/common/enums/weatherConditions.js";
 
 const isValid = ref(true);
 const searchValue = ref('');
@@ -44,6 +54,7 @@ watch(searchValue, () => {
 
 const router = useRouter();
 const weatherStore = useWeatherStore();
+const favoritesStore = useFavoritesStore();
 
 const onSubmit = async () => {
   if (!searchValue.value) {
@@ -61,6 +72,14 @@ const onSubmit = async () => {
     searchError.value = 'Couldn`t find the city';
   }
 }
+
+const favoritesPageForecasts = ref([]);
+onMounted(async () => {
+  for (const city of favoritesStore.favorites) {
+    await weatherStore.setCityWeather(city, 1);
+    favoritesPageForecasts.value.push(weatherStore.getCityWeather(city, 1));
+  }
+})
 </script>
 
 <style lang="scss" scoped>
