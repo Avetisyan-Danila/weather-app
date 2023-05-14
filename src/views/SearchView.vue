@@ -95,7 +95,7 @@ const onSubmit = async () => {
 }
 
 onMounted(async () => {
-  // Если существуют записи в localStorage, то получить погоду для город
+  // Если существуют записи в localStorage, то получить погоду для городов
   if (localStorage.getItem('recentSearches')) {
     recentSearchesStore.recentSearches = JSON.parse(localStorage.getItem('recentSearches'));
 
