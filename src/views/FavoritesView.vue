@@ -56,7 +56,7 @@ const onSubmit = async () => {
     await weatherStore.setCityWeather(searchValue.value, 7);
     searchError.value = '';
 
-    await router.push({ name: 'detailed', params: {city: searchValue.value }});
+    await router.push({ name: 'detailed', params: { city: searchValue.value }});
   } catch (e) {
     searchError.value = 'Couldn`t find the city';
   }
