@@ -87,7 +87,7 @@ const onSubmit = async () => {
     recentSearchesStore.setRecentSearch(searchValue.value);
     searchError.value = '';
 
-    await router.push({ name: 'detailed', params: {city: searchValue.value }});
+    await router.push({ name: 'detailed', params: { city: searchValue.value }});
   } catch (e) {
     searchError.value = 'Couldn`t find the city';
   }
