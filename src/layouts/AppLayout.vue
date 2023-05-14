@@ -11,9 +11,7 @@
     <div class="wrapper" id="wrapper">
       <app-header />
       <div class="main">
-        <transition name="fade" mode="out-in">
-          <slot />
-        </transition>
+        <slot />
       </div>
       <app-menu />
     </div>
