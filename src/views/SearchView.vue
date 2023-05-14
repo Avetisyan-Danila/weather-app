@@ -91,8 +91,6 @@ const onSubmit = async () => {
   } catch (e) {
     searchError.value = 'Couldn`t find the city';
   }
-
-  searchValue.value = '';
 }
 
 onMounted(async () => {
