@@ -22,7 +22,7 @@ export const useRecentSearchesStore = defineStore('recentSearches', {
         setRecentSearch(cityName) {
             if (this.getRecentSearch(cityName)) {
                 // Если город уже есть, то ставить его на первое месте в списке
-                const cityIndex = this.recentSearches.indexOf(cityName);
+                const cityIndex = this.recentSearches.findIndex((city) => city === cityName);
                 this.recentSearches.splice(cityIndex, 1);
                 this.recentSearches.unshift(cityName);
                 this.setLocalStorage();
