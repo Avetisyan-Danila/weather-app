@@ -83,7 +83,7 @@
       </div>
     </transition>
 
-    <div class="other-cities" v-if="otherCitiesForecast.length">
+    <div class="other-cities" v-if="otherCitiesForecast.length === otherCitiesNames.length">
       <div class="other-cities__header">
         <div class="other-cities__title">Other Cities</div>
       </div>
@@ -136,7 +136,7 @@ import { capitalizeFirstLetter } from "@/common/helpers/capitalizeFirstLetter.js
 
 const weatherStore = useWeatherStore();
 
-const mainCityForecast = ref(null);
+const mainCityForecast = computed(() => weatherStore.getCityWeather(MAIN_CITY, 2));
 
 // Почасовая погода главного города на сегодня
 const mainCityForecastCurrentDayHourly = computed(() => {
@@ -153,12 +153,19 @@ const mainCityCurrentTime = computed(() => {
   return new Date(mainCityForecast?.value?.location.localtime);
 });
 
-const otherCitiesForecast = ref([]);
+const otherCitiesForecast = computed(() => {
+  let arr = [];
+
+  for (const value of otherCitiesNames) {
+    if (weatherStore.getCityWeather(value.name, 1)) arr.push(weatherStore.getCityWeather(value.name, 1));
+  }
+
+  return arr;
+})
 
 onMounted(async () => {
   // Получение информации по главному городу
   await weatherStore.setCityWeather(MAIN_CITY, 2);
-  mainCityForecast.value = weatherStore.getCityWeather(MAIN_CITY, 2);
 
   // Получение информации по Other cities
   for (const value of otherCitiesNames) {

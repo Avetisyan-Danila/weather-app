@@ -50,6 +50,7 @@
       <div
           v-if="route.name === 'home'"
           class="header__button header__button--right"
+          @click="onRefresh"
       >
         <img
             :src="getImage('icons/refresh.svg')"
@@ -82,6 +83,9 @@ import { getImage } from "@/common/helpers/getImage.js";
 import { useRoute, useRouter } from "vue-router";
 import { ref, watch } from "vue";
 import { MAIN_CITY } from "@/common/constants";
+import otherCitiesNames from "@/mocks/other-cities-names.json";
+import {useWeatherStore} from "@/stores/weather.js";
+
 
 const router = useRouter();
 const route = useRoute();
@@ -100,6 +104,18 @@ watch(
       title.value = meta.title;
     }
 )
+
+const weatherStore = useWeatherStore();
+// Обновление информации о погоде на главной при клике на кнопку refresh
+const onRefresh = async () => {
+  // Получение информации по главному городу
+  await weatherStore.setCityWeather(MAIN_CITY, 2);
+
+  // Получение информации по Other cities
+  for (const value of otherCitiesNames) {
+    await weatherStore.setCityWeather(value.name, 1)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
