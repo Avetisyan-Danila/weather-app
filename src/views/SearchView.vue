@@ -149,7 +149,7 @@ watch(isLoading, (value) => {
     justify-content: center;
     align-items: center;
 
-    width: 38px;
+    min-width: 38px;
     height: 38px;
     cursor: pointer;
 
