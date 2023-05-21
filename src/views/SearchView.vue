@@ -56,16 +56,18 @@
 import AppInput from "@/common/components/AppInput.vue";
 import CityCard from "@/modules/city-card/CityCard.vue";
 import weatherConditions from "@/common/enums/weatherConditions.js";
-import { getImage } from "@/common/helpers/getImage.js";
-import { onMounted, ref, watch } from "vue";
-import { useWeatherStore } from "@/stores/weather.js";
-import { capitalizeFirstLetter } from "@/common/helpers/capitalizeFirstLetter.js";
-import { useRecentSearchesStore } from "@/stores/recentSearches.js";
-import { useRouter } from "vue-router";
+import {getImage} from "@/common/helpers/getImage.js";
+import {onMounted, ref, watch} from "vue";
+import {useWeatherStore} from "@/stores/weather.js";
+import {capitalizeFirstLetter} from "@/common/helpers/capitalizeFirstLetter.js";
+import {useRecentSearchesStore} from "@/stores/recentSearches.js";
+import {useRouter} from "vue-router";
+import {getUserCityName} from "@/common/helpers/getUserCityName.js";
 
 const isValid = ref(true);
 const searchValue = ref('');
 const searchError = ref('');
+const userCity = ref('');
 
 const router = useRouter();
 
@@ -78,37 +80,26 @@ const recentSearchesStore = useRecentSearchesStore();
 
 const searchPageForecasts = ref([]);
 
-const onLocationClick = () => {
-  navigator.geolocation.getCurrentPosition(success, error, {
-    // высокая точность
-    enableHighAccuracy: true
-  })
-
-  function success({ coords }) {
-    // получаем широту и долготу
-    const { latitude, longitude } = coords;
-    const position = [latitude, longitude].join(', ');
-    console.log(position)
-  }
-
-  function error({ message }) {
-    throw new Error(message)
-  }
+const onLocationClick = async (evt) => {
+  userCity.value = await getUserCityName();
+  await onSubmit(evt, true);
 }
 
-const onSubmit = async () => {
-  if (!searchValue.value) {
+const onSubmit = async (evt, isLocationClicked) => {
+  if (!isLocationClicked && !searchValue.value) {
     isValid.value = false;
     searchError.value = '';
     return;
   }
 
+  const value = isLocationClicked ? userCity.value : searchValue.value;
+
   try {
-    await weatherStore.setCityWeather(searchValue.value, 3);
-    recentSearchesStore.setRecentSearch(searchValue.value);
+    await weatherStore.setCityWeather(value, 3);
+    recentSearchesStore.setRecentSearch(value);
     searchError.value = '';
 
-    await router.push({ name: 'detailed', params: { city: searchValue.value }});
+    await router.push({ name: 'detailed', params: { city: value }});
   } catch (e) {
     searchError.value = 'Couldn`t find the city';
   }
