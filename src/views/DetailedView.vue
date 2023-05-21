@@ -101,8 +101,8 @@ const onAddButtonClick = () => {
 
 onMounted(async () => {
   // Получение информации по главному городу
-  await weatherStore.setCityWeather(detailedCity, 7);
-  cityForecast.value = weatherStore.getCityWeather(detailedCity, 7);
+  await weatherStore.setCityWeather(detailedCity, 3);
+  cityForecast.value = weatherStore.getCityWeather(detailedCity, 3);
 })
 </script>
 

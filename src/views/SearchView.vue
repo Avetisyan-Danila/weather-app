@@ -13,7 +13,10 @@
         />
       </form>
 
-      <div class="search__location">
+      <div
+          @click="onLocationClick"
+          class="search__location"
+      >
         <img
             :src="getImage('icons/location.svg')"
             alt="Geolocation"
@@ -59,7 +62,6 @@ import { useWeatherStore } from "@/stores/weather.js";
 import { capitalizeFirstLetter } from "@/common/helpers/capitalizeFirstLetter.js";
 import { useRecentSearchesStore } from "@/stores/recentSearches.js";
 import { useRouter } from "vue-router";
-import {MAIN_CITY} from "@/common/constants/index.js";
 
 const isValid = ref(true);
 const searchValue = ref('');
@@ -75,6 +77,25 @@ const weatherStore = useWeatherStore();
 const recentSearchesStore = useRecentSearchesStore();
 
 const searchPageForecasts = ref([]);
+
+const onLocationClick = () => {
+  navigator.geolocation.getCurrentPosition(success, error, {
+    // высокая точность
+    enableHighAccuracy: true
+  })
+
+  function success({ coords }) {
+    // получаем широту и долготу
+    const { latitude, longitude } = coords;
+    const position = [latitude, longitude].join(', ');
+    console.log(position)
+  }
+
+  function error({ message }) {
+    throw new Error(message)
+  }
+}
+
 const onSubmit = async () => {
   if (!searchValue.value) {
     isValid.value = false;
@@ -83,7 +104,7 @@ const onSubmit = async () => {
   }
 
   try {
-    await weatherStore.setCityWeather(searchValue.value, 7);
+    await weatherStore.setCityWeather(searchValue.value, 3);
     recentSearchesStore.setRecentSearch(searchValue.value);
     searchError.value = '';
 

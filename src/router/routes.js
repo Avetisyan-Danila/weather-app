@@ -16,7 +16,7 @@ export const routes = [
         path: "/detailed/:city",
         name: "detailed",
         meta: {
-            title: '7 Days',
+            title: '3 Days',
         },
         component: () => import("../views/DetailedView.vue"),
     },

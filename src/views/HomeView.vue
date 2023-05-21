@@ -31,7 +31,7 @@
         <div class="hourly-forecast__header">
           <div class="hourly-forecast__title">24h forecast</div>
           <router-link :to="{ name: 'detailed', params: { city: MAIN_CITY } }">
-            <app-button class="hourly-forecast__button" bordered>7-Day Forecasts</app-button>
+            <app-button class="hourly-forecast__button" bordered>3-Day Forecasts</app-button>
           </router-link>
         </div>
         <swiper
