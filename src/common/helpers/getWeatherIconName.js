@@ -1,4 +1,4 @@
-import weatherConditions from "@/common/enums/weatherConditions.js";
+import weatherConditions from '@/common/enums/weatherConditions.js';
 
 export const getWeatherIconName = (code, time) => {
     if (code === 1000) {

@@ -1,10 +1,10 @@
-import { defineStore } from "pinia";
-import { fetchCityWeather } from "@/services/forecast-service.js";
-import { normalizeWeatherInfo } from "@/common/helpers/normalizeWeatherInfo.js";
-import { getMinutesAgo } from "@/common/helpers/getMinutesAgo.js";
-import { ONE_MINUTE } from "@/common/constants/index.js";
+import { defineStore } from 'pinia';
+import { fetchCityWeather } from '@/services/forecast-service.js';
+import { normalizeWeatherInfo } from '@/common/helpers/normalizeWeatherInfo.js';
+import { getMinutesAgo } from '@/common/helpers/getMinutesAgo.js';
+import { ONE_MINUTE } from '@/common/constants/index.js';
 
-export const useWeatherStore = defineStore("weather", {
+export const useWeatherStore = defineStore('weather', {
     state: () => ({
         citiesWeather: [],
     }),

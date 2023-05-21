@@ -122,17 +122,17 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 
-import StatsInfo from "@/modules/stats/StatsInfo.vue";
-import AppButton from "@/common/components/AppButton.vue";
-import weatherConditions from "@/common/enums/weatherConditions.js";
-import otherCitiesNames from "@/mocks/other-cities-names.json";
-import { getImage } from "@/common/helpers/getImage.js";
-import { MAIN_CITY } from "@/common/constants";
-import { useWeatherStore } from "@/stores/weather.js";
-import { computed, onMounted, ref } from "vue";
-import { normalizeTime } from "@/common/helpers/normalizeTime.js";
-import { getWeatherIconName } from "@/common/helpers/getWeatherIconName.js";
-import { capitalizeFirstLetter } from "@/common/helpers/capitalizeFirstLetter.js";
+import StatsInfo from '@/modules/stats/StatsInfo.vue';
+import AppButton from '@/common/components/AppButton.vue';
+import weatherConditions from '@/common/enums/weatherConditions.js';
+import otherCitiesNames from '@/mocks/other-cities-names.json';
+import { getImage } from '@/common/helpers/getImage.js';
+import { MAIN_CITY } from '@/common/constants';
+import { useWeatherStore } from '@/stores/weather.js';
+import { computed, onMounted, ref } from 'vue';
+import { normalizeTime } from '@/common/helpers/normalizeTime.js';
+import { getWeatherIconName } from '@/common/helpers/getWeatherIconName.js';
+import { capitalizeFirstLetter } from '@/common/helpers/capitalizeFirstLetter.js';
 
 const weatherStore = useWeatherStore();
 
@@ -176,8 +176,8 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/mixins/mixins";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/mixins/mixins';
 
 .detailed-forecast {
   display: flex;

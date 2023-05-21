@@ -1,6 +1,6 @@
-import { monthNames, weekDays } from "@/common/constants/index.js";
-import { normalizeTime } from "@/common/helpers/normalizeTime.js";
-import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
+import { monthNames, weekDays } from '@/common/constants/index.js';
+import { normalizeTime } from '@/common/helpers/normalizeTime.js';
+import {getWeatherIconName} from '@/common/helpers/getWeatherIconName.js';
 
 export const normalizeWeatherInfo = (weatherInfo, days) => {
     const localtimeDate = new Date(weatherInfo.location.localtime);

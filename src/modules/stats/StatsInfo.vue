@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { getImage } from "@/common/helpers/getImage.js";
+import { getImage } from '@/common/helpers/getImage.js';
 
 defineProps({
   weatherInfo: {
@@ -48,8 +48,8 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/mixins/mixins";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/mixins/mixins';
 
 .stats {
   @include clear-list;

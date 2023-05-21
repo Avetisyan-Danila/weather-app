@@ -66,9 +66,9 @@
 </template>
 
 <script setup>
-import { getImage } from "@/common/helpers/getImage.js";
-import { useRoute, useRouter } from "vue-router";
-import { ref } from "vue";
+import { getImage } from '@/common/helpers/getImage.js';
+import { useRoute, useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -80,9 +80,9 @@ const isDetailedOpen = (name) => route.name === 'detailed' && prevRoute.value.na
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/breakpoints";
-@import "@/assets/scss/mixins/mixins";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/breakpoints';
+@import '@/assets/scss/mixins/mixins';
 
 .menu {
   position: absolute;

@@ -7,8 +7,8 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/mixins/mixins";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/mixins/mixins';
 
 .success {
   position: absolute;

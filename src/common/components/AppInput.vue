@@ -51,14 +51,14 @@ const emit = defineEmits(['update:modelValue']);
 // Для того, чтобы убрать белое пространство сверху при вводе в инпут (Safari)
 const onFocus = () => {
   setTimeout(() => {
-    window.scrollTo({ top: 1, behavior: "smooth" });
+    window.scrollTo({ top: 1, behavior: 'smooth' });
   }, 100)
 }
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/mixins/mixins";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/mixins/mixins';
 
 .app-input {
   display: block;

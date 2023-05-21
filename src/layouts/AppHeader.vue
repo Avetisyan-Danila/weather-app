@@ -79,12 +79,12 @@
 </template>
 
 <script setup>
-import { getImage } from "@/common/helpers/getImage.js";
-import { useRoute, useRouter } from "vue-router";
-import { ref, watch } from "vue";
-import { MAIN_CITY } from "@/common/constants";
-import otherCitiesNames from "@/mocks/other-cities-names.json";
-import {useWeatherStore} from "@/stores/weather.js";
+import { getImage } from '@/common/helpers/getImage.js';
+import { useRoute, useRouter } from 'vue-router';
+import { ref, watch } from 'vue';
+import { MAIN_CITY } from '@/common/constants';
+import otherCitiesNames from '@/mocks/other-cities-names.json';
+import {useWeatherStore} from '@/stores/weather.js';
 
 
 const router = useRouter();
@@ -119,8 +119,8 @@ const onRefresh = async () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/breakpoints";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/breakpoints';
 
 .header {
   box-sizing: border-box;

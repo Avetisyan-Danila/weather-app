@@ -19,15 +19,15 @@
 </template>
 
 <script setup>
-import AppHeader from "@/layouts/AppHeader.vue";
-import AppMenu from "@/layouts/AppMenu.vue";
-import { getImage } from "@/common/helpers/getImage.js";
+import AppHeader from '@/layouts/AppHeader.vue';
+import AppMenu from '@/layouts/AppMenu.vue';
+import { getImage } from '@/common/helpers/getImage.js';
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/breakpoints";
-@import "@/assets/scss/mixins/mixins";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/breakpoints';
+@import '@/assets/scss/mixins/mixins';
 
 .default-layout {
   position: relative;

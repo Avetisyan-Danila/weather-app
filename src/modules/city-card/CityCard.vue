@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { getImage } from "@/common/helpers/getImage.js";
+import { getImage } from '@/common/helpers/getImage.js';
 
 defineProps({
   to: {
@@ -38,8 +38,8 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/mixins/mixins";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/mixins/mixins';
 
 .city-card {
   @include purple-gradient;

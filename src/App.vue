@@ -9,9 +9,9 @@
 </template>
 
 <script setup>
-import AppLayout from "@/layouts/AppLayout.vue";
-import { useRecentSearchesStore } from "@/stores/recentSearches.js";
-import { useFavoritesStore } from "@/stores/favorites.js";
+import AppLayout from '@/layouts/AppLayout.vue';
+import { useRecentSearchesStore } from '@/stores/recentSearches.js';
+import { useFavoritesStore } from '@/stores/favorites.js';
 
 const recentSearchesStore = useRecentSearchesStore();
 const favoritesStore = useFavoritesStore();
@@ -24,5 +24,5 @@ void favoritesStore.initFavoritesStore();
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/app.scss";
+@import '@/assets/scss/app.scss';
 </style>

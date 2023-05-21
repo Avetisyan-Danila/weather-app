@@ -34,15 +34,14 @@
 </template>
 
 <script setup>
-import AppInput from "@/common/components/AppInput.vue";
-import CityCard from "@/modules/city-card/CityCard.vue";
-import {onMounted, ref, watch} from "vue";
-import {useWeatherStore} from "@/stores/weather.js";
-import {useRecentSearchesStore} from "@/stores/recentSearches.js";
-import {useFavoritesStore} from "@/stores/favorites.js";
-import {useRouter} from "vue-router";
-import {capitalizeFirstLetter} from "@/common/helpers/capitalizeFirstLetter.js";
-import weatherConditions from "@/common/enums/weatherConditions.js";
+import AppInput from '@/common/components/AppInput.vue';
+import CityCard from '@/modules/city-card/CityCard.vue';
+import {onMounted, ref, watch} from 'vue';
+import {useWeatherStore} from '@/stores/weather.js';
+import {useFavoritesStore} from '@/stores/favorites.js';
+import {useRouter} from 'vue-router';
+import {capitalizeFirstLetter} from '@/common/helpers/capitalizeFirstLetter.js';
+import weatherConditions from '@/common/enums/weatherConditions.js';
 
 const isValid = ref(true);
 const searchValue = ref('');
@@ -83,8 +82,8 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/ds-system/ds";
-@import "@/assets/scss/mixins/mixins";
+@import '@/assets/scss/ds-system/ds';
+@import '@/assets/scss/mixins/mixins';
 
 .favorites {
   &__form {
