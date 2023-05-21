@@ -75,6 +75,15 @@
         />
       </div>
     </transition>
+
+    <transition name="fade" appear>
+      <div
+          v-if="loadingIndicatorStore.loading === true"
+          class="header__button header__button--right header__button--loading"
+      >
+        <loading-indicator />
+      </div>
+    </transition>
   </header>
 </template>
 
@@ -84,7 +93,9 @@ import { useRoute, useRouter } from 'vue-router';
 import { ref, watch } from 'vue';
 import { MAIN_CITY } from '@/common/constants';
 import { useWeatherStore } from '@/stores/weather.js';
+import { useLoadingIndicatorStore } from '@/stores/loadingIndicator.js';
 import otherCitiesNames from '@/mocks/other-cities-names.json';
+import LoadingIndicator from "@/modules/loading-indicator/LoadingIndicator.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -115,6 +126,8 @@ const onRefresh = async () => {
     await weatherStore.setCityWeather(value.name, 1)
   }
 }
+
+const loadingIndicatorStore = useLoadingIndicatorStore();
 </script>
 
 <style lang="scss" scoped>
@@ -175,9 +188,17 @@ const onRefresh = async () => {
   &--right {
     right: 0;
 
+    & + .header__button--right {
+      right: 50px;
+    }
+
     @media (max-width: $sm) {
       right: 20px;
     }
+  }
+
+  &--loading {
+    background: none;
   }
 }
 
