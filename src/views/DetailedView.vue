@@ -71,11 +71,12 @@
 import StatsInfo from "@/modules/stats/StatsInfo.vue";
 import { getImage } from "@/common/helpers/getImage.js";
 import { useRoute } from "vue-router";
-import { computed, onMounted, ref } from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import { useWeatherStore } from "@/stores/weather.js";
 import { weekDays } from "@/common/constants/index.js";
 import { getWeatherIconName } from "@/common/helpers/getWeatherIconName.js";
 import { useFavoritesStore } from "@/stores/favorites.js";
+import {useLoadingIndicatorStore} from "@/stores/loadingIndicator.js";
 
 const route = useRoute();
 
@@ -104,6 +105,15 @@ onMounted(async () => {
   await weatherStore.setCityWeather(detailedCity, 3);
   cityForecast.value = weatherStore.getCityWeather(detailedCity, 3);
 })
+
+// Индикация загрузки
+const loadingIndicatorStore = useLoadingIndicatorStore();
+
+const isLoading = computed(() => !cityForecast.value);
+
+watch(isLoading, (value) => {
+  loadingIndicatorStore.setLoadingIndicator(value);
+}, {immediate: true})
 </script>
 
 <style lang="scss" scoped>
