@@ -11,11 +11,20 @@
     <link rel="preload" href="/weather-app/assets/poppins-semi-bold-e4d63ce9.woff" as="font" type="font/woff" crossorigin="anonymous">
     <link rel="icon" href="/weather-app/favicon.ico">
     <title>Weather App</title>
-  <script type="module" crossorigin src="/weather-app/assets/index-d16872ee.js"></script>
+  <script type="module" crossorigin src="/weather-app/assets/main-8ef16e78.js"></script>
   <link rel="stylesheet" href="/weather-app/assets/index-e3da9897.css">
 </head>
 <body>
 <div id="app"></div>
 
+<script>
+    (() => {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+            history.replaceState(null, null, redirect);
+        }
+    })();
+</script>
 </body>
 </html>
