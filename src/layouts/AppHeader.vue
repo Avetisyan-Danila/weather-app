@@ -78,10 +78,9 @@
 
     <transition name="fade" appear>
       <div
-          v-if="loadingIndicatorStore.loading === true"
           class="header__button header__button--right header__button--loading"
       >
-        <loading-indicator />
+        <loading-indicator v-if="loadingIndicatorStore.loading === true" />
       </div>
     </transition>
   </header>
@@ -198,6 +197,7 @@ const loadingIndicatorStore = useLoadingIndicatorStore();
   }
 
   &--loading {
+    cursor: default;
     background: none;
   }
 }
