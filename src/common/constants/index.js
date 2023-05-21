@@ -1,5 +1,7 @@
 export const API_KEY = '142881e823a2448c849171124230505';
-export const BASE_URL = 'http://api.weatherapi.com/v1';
+export const WEATHER_BASE_URL = 'http://api.weatherapi.com/v1';
+
+export const USER_GEOLOCATION_BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
 
 export const MAIN_CITY = 'Moscow';
 
