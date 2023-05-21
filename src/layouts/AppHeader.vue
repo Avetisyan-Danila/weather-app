@@ -78,9 +78,10 @@
 
     <transition name="fade" appear>
       <div
+          v-if="loadingIndicatorStore.loading === true"
           class="header__button header__button--right header__button--loading"
       >
-        <loading-indicator v-if="loadingIndicatorStore.loading === true" />
+        <loading-indicator />
       </div>
     </transition>
   </header>
@@ -189,6 +190,10 @@ const loadingIndicatorStore = useLoadingIndicatorStore();
 
     & + .header__button--right {
       right: 50px;
+
+      @media (max-width: $sm) {
+        right: 70px;
+      }
     }
 
     @media (max-width: $sm) {
