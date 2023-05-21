@@ -57,10 +57,11 @@ import AppInput from '@/common/components/AppInput.vue';
 import CityCard from '@/modules/city-card/CityCard.vue';
 import weatherConditions from '@/common/enums/weatherConditions.js';
 import { getImage } from '@/common/helpers/getImage.js';
-import { onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useWeatherStore } from '@/stores/weather.js';
 import { capitalizeFirstLetter } from '@/common/helpers/capitalizeFirstLetter.js';
 import { useRecentSearchesStore } from '@/stores/recentSearches.js';
+import { useLoadingIndicatorStore } from "@/stores/loadingIndicator.js";
 import { useRouter } from 'vue-router';
 import { getUserCityName } from '@/common/helpers/getUserCityName.js';
 
@@ -111,6 +112,15 @@ onMounted(async () => {
     searchPageForecasts.value.push(weatherStore.getCityWeather(city, 1));
   }
 })
+
+// Индикация загрузки
+const loadingIndicatorStore = useLoadingIndicatorStore();
+
+const isLoading = computed(() => searchPageForecasts.value.length !== recentSearchesStore.recentSearches.length);
+
+watch(isLoading, (value) => {
+  loadingIndicatorStore.setLoadingIndicator(value);
+}, {immediate: true})
 </script>
 
 <style lang="scss" scoped>

@@ -129,7 +129,8 @@ import otherCitiesNames from '@/mocks/other-cities-names.json';
 import { getImage } from '@/common/helpers/getImage.js';
 import { MAIN_CITY } from '@/common/constants';
 import { useWeatherStore } from '@/stores/weather.js';
-import { computed, onMounted } from 'vue';
+import { useLoadingIndicatorStore } from "@/stores/loadingIndicator.js";
+import { computed, onMounted, watch } from 'vue';
 import { normalizeTime } from '@/common/helpers/normalizeTime.js';
 import { getWeatherIconName } from '@/common/helpers/getWeatherIconName.js';
 import { capitalizeFirstLetter } from '@/common/helpers/capitalizeFirstLetter.js';
@@ -173,6 +174,15 @@ onMounted(async () => {
     otherCitiesForecast.value.push(weatherStore.getCityWeather(value.name, 1))
   }
 })
+
+// Индикация загрузки
+const loadingIndicatorStore = useLoadingIndicatorStore();
+
+const isLoading = computed(() => !mainCityForecast.value || !otherCitiesForecast.value.length === otherCitiesNames.length);
+
+watch(isLoading, (value) => {
+  loadingIndicatorStore.setLoadingIndicator(value);
+}, {immediate: true})
 </script>
 
 <style lang="scss" scoped>
