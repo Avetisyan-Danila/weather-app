@@ -43,6 +43,7 @@ import { useFavoritesStore } from '@/stores/favorites.js';
 import { useRouter } from 'vue-router';
 import { capitalizeFirstLetter } from '@/common/helpers/capitalizeFirstLetter.js';
 import {useLoadingIndicatorStore} from "@/stores/loadingIndicator.js";
+import {useRecentSearchesStore} from "@/stores/recentSearches.js";
 
 const isValid = ref(true);
 const searchValue = ref('');
@@ -54,6 +55,7 @@ watch(searchValue, () => {
 
 const router = useRouter();
 const weatherStore = useWeatherStore();
+const recentSearchesStore = useRecentSearchesStore();
 const favoritesStore = useFavoritesStore();
 
 const onSubmit = async () => {
@@ -65,6 +67,7 @@ const onSubmit = async () => {
 
   try {
     await weatherStore.setCityWeather(searchValue.value, 7);
+    recentSearchesStore.setRecentSearch(searchValue.value);
     searchError.value = '';
 
     await router.push({ name: 'detailed', params: { city: searchValue.value }});
