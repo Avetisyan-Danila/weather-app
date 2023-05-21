@@ -13,7 +13,7 @@
         />
       </div>
       <div
-          v-else-if="hasHistory && route.name !== 'success' && route.name !== 'detailed'"
+          v-else-if="hasHistory && route.name !== 'success'"
           class="header__button header__button--left"
           @click="router.go(-1)"
       >
