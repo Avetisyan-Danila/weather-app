@@ -159,7 +159,7 @@ watch(isLoading, (value) => {
     align-items: center;
 
     padding: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 
     &:after {
       border-radius: 15px;
@@ -226,7 +226,7 @@ watch(isLoading, (value) => {
 
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
   }
 
   &__item {
