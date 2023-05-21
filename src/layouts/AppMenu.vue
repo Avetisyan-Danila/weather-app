@@ -7,7 +7,7 @@
         <router-link
             class="menu__link"
             :class="{'menu__link--active': route.name === 'home' || isDetailedOpen('home')}"
-            to="/"
+            :to="{ name: 'home' }"
         >
           <img
               :src="getImage('icons/home.svg')"
