@@ -22,7 +22,7 @@
   height: 35px;
 }
 .pl__ring, .pl__ball {
-  animation: ring 1.35s ease-out infinite;
+  animation: ring 1.5s ease-out infinite;
 }
 .pl__ball {
   animation-name: ball;
