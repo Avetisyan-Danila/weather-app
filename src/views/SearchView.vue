@@ -56,13 +56,13 @@
 import AppInput from '@/common/components/AppInput.vue';
 import CityCard from '@/modules/city-card/CityCard.vue';
 import weatherConditions from '@/common/enums/weatherConditions.js';
-import {getImage} from '@/common/helpers/getImage.js';
-import {onMounted, ref, watch} from 'vue';
-import {useWeatherStore} from '@/stores/weather.js';
-import {capitalizeFirstLetter} from '@/common/helpers/capitalizeFirstLetter.js';
-import {useRecentSearchesStore} from '@/stores/recentSearches.js';
-import {useRouter} from 'vue-router';
-import {getUserCityName} from '@/common/helpers/getUserCityName.js';
+import { getImage } from '@/common/helpers/getImage.js';
+import { onMounted, ref, watch } from 'vue';
+import { useWeatherStore } from '@/stores/weather.js';
+import { capitalizeFirstLetter } from '@/common/helpers/capitalizeFirstLetter.js';
+import { useRecentSearchesStore } from '@/stores/recentSearches.js';
+import { useRouter } from 'vue-router';
+import { getUserCityName } from '@/common/helpers/getUserCityName.js';
 
 const isValid = ref(true);
 const searchValue = ref('');

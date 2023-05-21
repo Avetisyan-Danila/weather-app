@@ -17,7 +17,7 @@ const recentSearchesStore = useRecentSearchesStore();
 const favoritesStore = useFavoritesStore();
 
 // Загрузка первоначальных данных
-// Загружаем последние 6 город, которые искал пользователь
+// Загружаем последние 6 городов, которые искал пользователь
 void recentSearchesStore.initRecentStore();
 // Загружаем избранные города
 void favoritesStore.initFavoritesStore();

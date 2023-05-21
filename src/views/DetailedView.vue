@@ -74,8 +74,8 @@ import { useRoute } from "vue-router";
 import { computed, onMounted, ref } from "vue";
 import { useWeatherStore } from "@/stores/weather.js";
 import { weekDays } from "@/common/constants/index.js";
-import {getWeatherIconName} from "@/common/helpers/getWeatherIconName.js";
-import {useFavoritesStore} from "@/stores/favorites.js";
+import { getWeatherIconName } from "@/common/helpers/getWeatherIconName.js";
+import { useFavoritesStore } from "@/stores/favorites.js";
 
 const route = useRoute();
 

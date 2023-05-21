@@ -108,10 +108,10 @@
 </template>
 
 <script setup>
+import AppButton from '@/common/components/AppButton.vue';
 import { getImage } from '@/common/helpers/getImage.js';
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import AppButton from '@/common/components/AppButton.vue';
 
 const router = useRouter();
 const picked = ref('');

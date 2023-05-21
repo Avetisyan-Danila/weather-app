@@ -129,7 +129,7 @@ import otherCitiesNames from '@/mocks/other-cities-names.json';
 import { getImage } from '@/common/helpers/getImage.js';
 import { MAIN_CITY } from '@/common/constants';
 import { useWeatherStore } from '@/stores/weather.js';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted } from 'vue';
 import { normalizeTime } from '@/common/helpers/normalizeTime.js';
 import { getWeatherIconName } from '@/common/helpers/getWeatherIconName.js';
 import { capitalizeFirstLetter } from '@/common/helpers/capitalizeFirstLetter.js';

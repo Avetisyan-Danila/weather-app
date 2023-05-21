@@ -36,12 +36,12 @@
 <script setup>
 import AppInput from '@/common/components/AppInput.vue';
 import CityCard from '@/modules/city-card/CityCard.vue';
-import {onMounted, ref, watch} from 'vue';
-import {useWeatherStore} from '@/stores/weather.js';
-import {useFavoritesStore} from '@/stores/favorites.js';
-import {useRouter} from 'vue-router';
-import {capitalizeFirstLetter} from '@/common/helpers/capitalizeFirstLetter.js';
 import weatherConditions from '@/common/enums/weatherConditions.js';
+import { onMounted, ref, watch } from 'vue';
+import { useWeatherStore } from '@/stores/weather.js';
+import { useFavoritesStore } from '@/stores/favorites.js';
+import { useRouter } from 'vue-router';
+import { capitalizeFirstLetter } from '@/common/helpers/capitalizeFirstLetter.js';
 
 const isValid = ref(true);
 const searchValue = ref('');
