@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preload" href="/weather-app/assets/poppins-regular-078a838f.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="/weather-app/assets/poppins-regular-ebf437bb.woff" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="/weather-app/assets/poppins-regular-078a838f.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="/weather-app/assets/poppins-medium-290364d1.woff" as="font" type="font/woff" crossorigin="anonymous">
-    <link rel="preload" href="/weather-app/assets/poppins-semi-bold-65221c19.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="/weather-app/assets/poppins-semi-bold-e4d63ce9.woff" as="font" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" href="/assets/poppins-regular-078a838f.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/poppins-regular-ebf437bb.woff" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/poppins-regular-078a838f.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/poppins-medium-290364d1.woff" as="font" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" href="/assets/poppins-semi-bold-65221c19.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/assets/poppins-semi-bold-e4d63ce9.woff" as="font" type="font/woff" crossorigin="anonymous">
     <link rel="icon" href="/weather-app/favicon.ico">
     <title>Weather App</title>
-  <script type="module" crossorigin src="/weather-app/assets/main-8ef16e78.js"></script>
-  <link rel="stylesheet" href="/weather-app/assets/index-e3da9897.css">
+  <script type="module" crossorigin src="/assets/main-41216a8c.js"></script>
+  <link rel="stylesheet" href="/assets/index-1371b36c.css">
 </head>
 <body>
+<!-- /Github Pages hack. -->
 <div id="app"></div>
 
+
+<!-- Github Pages hack to allow SPA refresh without receiving 404. -->
 <script>
-    (() => {
+    (function () {
+        // Retrieve the URL the user was trying to access when receiving the 404.
         const redirect = sessionStorage.redirect;
+        // Remove the URL from sessionStorage.
         delete sessionStorage.redirect;
+        // Check if we actually need to redirect.
         if (redirect && redirect !== location.href) {
+            // We need to redirect to the URL the user was trying to access.
             history.replaceState(null, null, redirect);
         }
     })();

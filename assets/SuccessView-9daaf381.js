@@ -1,1 +1,0 @@
-import{_ as s,e as c,f as _,s as o,t,g as a}from"./main-8ef16e78.js";const d={},n=e=>(o("data-v-8b089dca"),e=e(),t(),e),p={class:"success"},r=n(()=>a("div",{class:"success__content"}," Thank you for feedback! ",-1)),i=[r];function u(e,f){return c(),_("div",p,i)}const h=s(d,[["render",u],["__scopeId","data-v-8b089dca"]]);export{h as default};
