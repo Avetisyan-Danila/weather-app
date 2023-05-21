@@ -83,38 +83,40 @@
       </div>
     </transition>
 
-    <div class="other-cities" v-if="otherCitiesForecast.length === otherCitiesNames.length">
-      <div class="other-cities__header">
+    <transition-group name="fade" appear>
+      <div class="other-cities__header" v-if="mainCityForecast && otherCitiesNames.length">
         <div class="other-cities__title">Other Cities</div>
       </div>
-      <swiper
-          class="other-cities__list"
-          :slides-per-view="'auto'"
-          :space-between="10"
-      >
-        <swiper-slide
-            v-for="city in otherCitiesForecast"
-            :key="city.location.name"
-            class="other-cities__item"
+      <div class="other-cities" v-if="otherCitiesForecast.length === otherCitiesNames.length">
+        <swiper
+            class="other-cities__list"
+            :slides-per-view="'auto'"
+            :space-between="10"
         >
-          <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: city.location.name } }">
-            <div class="other-cities__img">
-              <img
-                  :src="getImage(`weather/${city.currentDayIcon}.svg`)"
-                  alt="Cloudy"
-                  width="40"
-                  height="40"
-              >
-            </div>
-            <div class="other-cities__info">
-              <div class="other-cities__name">{{ city.location.name }}</div>
-              <div class="other-cities__weather">{{ capitalizeFirstLetter(weatherConditions[city.current.condition.code]) }}</div>
-            </div>
-            <div class="other-cities__degrees">{{ Math.round(city.current.temp_c) }}</div>
-          </router-link>
-        </swiper-slide>
-      </swiper>
-    </div>
+          <swiper-slide
+              v-for="city in otherCitiesForecast"
+              :key="city.location.name"
+              class="other-cities__item"
+          >
+            <router-link class="other-cities__link" :to="{ name: 'detailed', params: { city: city.location.name } }">
+              <div class="other-cities__img">
+                <img
+                    :src="getImage(`weather/${city.currentDayIcon}.svg`)"
+                    alt="Cloudy"
+                    width="40"
+                    height="40"
+                >
+              </div>
+              <div class="other-cities__info">
+                <div class="other-cities__name">{{ city.location.name }}</div>
+                <div class="other-cities__weather">{{ capitalizeFirstLetter(weatherConditions[city.current.condition.code]) }}</div>
+              </div>
+              <div class="other-cities__degrees">{{ Math.round(city.current.temp_c) }}</div>
+            </router-link>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </transition-group>
   </div>
 </template>
 
@@ -178,7 +180,7 @@ onMounted(async () => {
 // Индикация загрузки
 const loadingIndicatorStore = useLoadingIndicatorStore();
 
-const isLoading = computed(() => !mainCityForecast.value || !otherCitiesForecast.value.length === otherCitiesNames.length);
+const isLoading = computed(() => !mainCityForecast.value || !(otherCitiesForecast.value.length === otherCitiesNames.length));
 
 watch(isLoading, (value) => {
   loadingIndicatorStore.setLoadingIndicator(value);
