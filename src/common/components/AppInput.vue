@@ -10,8 +10,8 @@
         @focus="onFocus"
     />
   </label>
-  <div v-show="!isValid" class="error-message">{{ emptyErrorMessage }}</div>
-  <div v-show="searchErrorMessage" class="error-message">{{ searchErrorMessage }}</div>
+  <div v-if="!isValid" class="error-message">{{ emptyErrorMessage }}</div>
+  <div v-if="searchErrorMessage" class="error-message">{{ searchErrorMessage }}</div>
 </template>
 
 <script setup>
