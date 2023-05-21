@@ -1,6 +1,6 @@
 export const routes = [
     {
-        path: '/',
+        path: '/weather-app',
         name: 'home',
         component: () => import('@/views/HomeView.vue'),
     },
