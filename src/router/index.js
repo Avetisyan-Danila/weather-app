@@ -3,7 +3,7 @@ import { routes } from './routes';
 
 export const router = createRouter({
     routes,
-    history: createWebHistory(),
+    history: createWebHistory('/weather-app/'),
     scrollBehavior () {
         return { x: 0, y: 0 }
     }

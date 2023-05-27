@@ -1,6 +1,6 @@
 export const routes = [
     {
-        path: '/weather-app',
+        path: '/',
         name: 'home',
         component: () => import('@/views/HomeView.vue'),
     },
@@ -43,4 +43,8 @@ export const routes = [
             title: 'Favorites',
         },
     },
+    {
+        path: '/:pathMatch(.*)*',
+        redirect: { name: 'home' },
+    }
 ];
