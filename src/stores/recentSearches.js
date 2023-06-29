@@ -27,7 +27,7 @@ export const useRecentSearchesStore = defineStore('recentSearches', {
                 this.recentSearches.unshift(cityName);
                 this.setLocalStorage();
             } else if (this.recentSearches.length === 6) {
-                // Если 3 города уже есть, то удалить последний и вставить новый в начало
+                // Если 6 городов уже есть, то удалить последний и вставить новый в начало
                 this.recentSearches.pop();
                 this.recentSearches.unshift(cityName);
                 this.setLocalStorage();
